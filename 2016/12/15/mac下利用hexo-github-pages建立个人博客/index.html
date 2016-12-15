@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Phoebe's blog">
 <meta property="og:description" content="折腾了一晚上终于搞定了自己的博客，觉得还是要写下来万一之后要重新弄然而zz了都不记得了，也给别的小伙伴做个参考吧~参考了很多博客，在后文会表示感谢的！用到的是hexo和github pages，当然也可以使用Jekyll（而且这个貌似是github官方比较推荐的，但是个人感觉hexo的theme更好看一点2333）废话不说了开始正题
 什么是HexoHexo 是一个快速、简洁且高效的博客框架。He">
-<meta property="og:updated_time" content="2016-12-15T11:26:46.000Z">
+<meta property="og:updated_time" content="2016-12-15T11:36:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac下利用hexo+github pages建立个人博客">
 <meta name="twitter:description" content="折腾了一晚上终于搞定了自己的博客，觉得还是要写下来万一之后要重新弄然而zz了都不记得了，也给别的小伙伴做个参考吧~参考了很多博客，在后文会表示感谢的！用到的是hexo和github pages，当然也可以使用Jekyll（而且这个貌似是github官方比较推荐的，但是个人感觉hexo的theme更好看一点2333）废话不说了开始正题
@@ -234,24 +234,24 @@
             <hr>
 <p>折腾了一晚上终于搞定了自己的博客，觉得还是要写下来万一之后要重新弄然而zz了都不记得了，也给别的小伙伴做个参考吧~参考了很多博客，在后文会表示感谢的！用到的是hexo和github pages，当然也可以使用Jekyll（而且这个貌似是github官方比较推荐的，但是个人感觉hexo的theme更好看一点2333）废话不说了开始正题</p>
 <h2 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。这里可以参考<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo的中文官方文档</a></p>
-<p>##安装Hexo<br>安装按照文档所给的步骤进行即可，在此列出一些较关键的步骤</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>安装按照文档所给的步骤进行即可，在此列出一些较关键的步骤</p>
 <h3 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h3><p>首先确保电脑中已安装了下列应用程序：<br><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a><br><a href="https://git-scm.com/" target="_blank" rel="external">Git</a></p>
 <p>如果没有请根据以下安装指示完成安装：</p>
-<p>###Git<br>使用 <a href="http://brew.sh/" target="_blank" rel="external">Homebrew</a>, 或下载<a href="https://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="external">安装程序</a>安装。</p>
-<p>###Node.js（这里使用nvm来进行安装）<br>首先安装nvm（cURL）:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh</div></pre></td></tr></table></figure></p>
+<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>使用 <a href="http://brew.sh/" target="_blank" rel="external">Homebrew</a>, 或下载<a href="https://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="external">安装程序</a>安装。</p>
+<h3 id="Node-js（这里使用nvm来进行安装）"><a href="#Node-js（这里使用nvm来进行安装）" class="headerlink" title="Node.js（这里使用nvm来进行安装）"></a>Node.js（这里使用nvm来进行安装）</h3><p>首先安装nvm（cURL）:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh</div></pre></td></tr></table></figure></p>
 <p>安装完成后，重启终端并执行下列命令即可安装 Node.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nvm install stable</div></pre></td></tr></table></figure></p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
-<p>##建站<br>安装 Hexo 完成后，在本地新建一个文件夹，并进入到文件夹目录下，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init</div><div class="line">$ npm install</div></pre></td></tr></table></figure></p>
+<h3 id="安装Hexo-1"><a href="#安装Hexo-1" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
+<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p>安装 Hexo 完成后，在本地新建一个文件夹，并进入到文件夹目录下，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init</div><div class="line">$ npm install</div></pre></td></tr></table></figure></p>
 <p>新建完成后，指定文件夹的目录如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">├── _config.yml</div><div class="line">├── package.json</div><div class="line">├── scaffolds</div><div class="line">├── source</div><div class="line">|   ├── _posts</div><div class="line">└── themes</div></pre></td></tr></table></figure></p>
 <p>这里主要强调_config.yml，这是你的配置文件，themes文件夹中存放你的主题，source/_posts中存放的是你的博文，可使用markdown等格式</p>
 <p>对于theme的使用，Hexo提供了众多<a href="https://hexo.io/themes/" target="_blank" rel="external">模板</a>,使用时将其下载解压至theme文件夹中，然后将_config.yml最后的theme后改成你想要使用的theme名</p>
-<p>##Github pages<br>Github page可以方便的为项目建立介绍站点，也可以用来建立个人博客。</p>
-<p>###创建代码仓库<br>首先你需要有一个Github账号，这里就不细说了，网上可以找到大量的教程。之后利用Github新建一个项目命名要按照<strong>username.github.io</strong>的格式，其中username是你的Github账号名</p>
+<h2 id="Github-pages"><a href="#Github-pages" class="headerlink" title="Github pages"></a>Github pages</h2><p>Github page可以方便的为项目建立介绍站点，也可以用来建立个人博客。</p>
+<h3 id="创建代码仓库"><a href="#创建代码仓库" class="headerlink" title="创建代码仓库"></a>创建代码仓库</h3><p>首先你需要有一个Github账号，这里就不细说了，网上可以找到大量的教程。之后利用Github新建一个项目命名要按照<strong>username.github.io</strong>的格式，其中username是你的Github账号名</p>
 <h3 id="将Hexo部署到Gihub-Page"><a href="#将Hexo部署到Gihub-Page" class="headerlink" title="将Hexo部署到Gihub Page"></a>将Hexo部署到Gihub Page</h3><p>将_config.yml最后的deploy部分改成下面的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">type: git</div><div class="line">repo: https://github.com/username/username.github.io.git</div><div class="line">branch: master</div></pre></td></tr></table></figure></p>
 <p>将其中的username改为你自己的Github账号名，这样就部署好了~</p>
-<p>##Markdown<br>我的博客使用的都是Markdown，Markdown 是一种简单的、轻量级的标记语法。用户可以使用诸如 * # 等简单的标记符号以最小的输入代价生成极富表现力的文档。</p>
+<h2 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h2><p>我的博客使用的都是Markdown，Markdown 是一种简单的、轻量级的标记语法。用户可以使用诸如 * # 等简单的标记符号以最小的输入代价生成极富表现力的文档。</p>
 <p>Markdown具有很多优点：<br>写作中添加简单符号即完成排版，所见即所得。让你专注于文字而不是排版。<br>格式转换方便，Markdown 的文本你可以轻松转换为 html、pdf等。<br>Cmd Markdown 的主界面通常一分为二，左边为<strong>编辑区</strong>，右边为<strong>预览区</strong>，在编辑区的操作会实时地渲染到预览区方便查看最终的版面效果</p>
-<p>###在线编辑工具<br>在这里推荐一个在线Markdown编辑工具<a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">作业部落</a>，而这个上传本地图片是要收费的，所以提供一个<a href="http://tuchuang.org/" target="_blank" rel="external">图床网站</a>，上传本地图片到这里然后使用生成的URL即可</p>
+<h3 id="在线编辑工具"><a href="#在线编辑工具" class="headerlink" title="在线编辑工具"></a>在线编辑工具</h3><p>在这里推荐一个在线Markdown编辑工具<a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">作业部落</a>，而这个上传本地图片是要收费的，所以提供一个<a href="http://tuchuang.org/" target="_blank" rel="external">图床网站</a>，上传本地图片到这里然后使用生成的URL即可</p>
 <h3 id="发布新博客"><a href="#发布新博客" class="headerlink" title="发布新博客"></a>发布新博客</h3><p>利用hexo发布新博客时，使用下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo n &quot;new post&quot;</div></pre></td></tr></table></figure></p>
 <p>其中new post为文章标题，执行命令后，会在项目\source_posts中生成new post.md文件，打开编写即可。也可以直接在\source_posts中新建一个md文件。文件开头可使用下列部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">title: postName #文章页面上的显示名称，可以任意修改，不会出现在URL中</div><div class="line">date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改</div><div class="line">categories: example #分类</div><div class="line">tags: [tag1,tag2,tag3] #文章标签，可空</div><div class="line">description: 附加一段文章摘要，字数最好在140字以内。</div></pre></td></tr></table></figure></p>
 <p>编写完成后，推送到服务器上，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo g #生成</div><div class="line">$ hexo d #部署 # 可与hexo g合并为 hexo d -g</div></pre></td></tr></table></figure></p>
@@ -267,7 +267,7 @@
 
 </div>
 
-    <a data-url="http://oppalu.github.io/2016/12/15/mac下利用hexo-github-pages建立个人博客/" data-id="ciwqa6lfd0001al2pupsa73qj" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
+    <a data-url="http://oppalu.github.io/2016/12/15/mac下利用hexo-github-pages建立个人博客/" data-id="ciwqajpub0009n92pcfavoolj" class="article-share-link"><i class="fa fa-share"></i>Compartir</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
