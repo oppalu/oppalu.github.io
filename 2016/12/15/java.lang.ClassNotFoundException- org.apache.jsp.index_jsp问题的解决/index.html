@@ -22,7 +22,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://oppalu.github.io/archives/2016/12/">
+    <link rel="canonical" href="http://oppalu.github.io/2016/12/15/java.lang.ClassNotFoundException- org.apache.jsp.index_jsp问题的解决/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -116,134 +116,110 @@
 
 <!-- Main Content -->
 
+<!--only post-->
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="undefined"/>
-                        <h5><a href="/about/">Phoebe Gao</a></h5>
-                        <p>undefined</p>
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1></h1>
+                    
+                    <span class="meta">
+                         作者 Phoebe Gao
+                        <span>
+                          日期 2016-12-15
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
     </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
+    <div class="post-title-haojen">
+        <span>
+            
+        </span>
+    </div>
+</header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决"><a href="#java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决" class="headerlink" title="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决"></a>java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决</h1><hr>
+<p>在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图<br><img src="http://p1.bpimg.com/4851/7c2edd4caebecfca.png" alt="此处输入图片的描述"></p>
+<p>此时使用<jsp:usebean>运行时发现出现了500异常，异常情况如图<br><img src="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png" alt="此处输入图片的描述"></jsp:usebean></p>
+<p>在网上查阅资料均说这种异常出现是因为jar包与Tomcat自身的jar包冲突，而我本身使用Tomcat服务器，并没有引入外部jar包。后来查看控制台，发现有下列的warning提示<br><img src="http://p1.bpimg.com/4851/79d53fb31f0d5978.png" alt="此处输入图片的描述"></p>
+<p>我想会不会是class路径有问题，<strong><em>后来试着将原本在src下的JavaBean文件放入了自定义的包中，结果运行正常。</em></strong>查阅资料并没有发现需要这样做的根本原因，只看到了说JavaBean的开发要求有：<br>①所有的类必须放在一个包中，在Web中没有包的类是不存在的<br>②所有类必须声明为public class<br>③属性用private封装，提供getter、setter方法<br>④一个JavaBean中至少存在一个无参构造方法</p>
 
+                <hr>
+                
 
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2016/12/15/java.lang.ClassNotFoundException- org.apache.jsp.index_jsp问题的解决/">
-        <h2 class="post-title">
-            未命名
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2016-12-15
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决
-在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图
-此时使用运行时发现出现了500异常，异常情况如图
-在网上查阅资料均说这种异常出现是因为jar包..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview "
-     style="background-image: url('')">
-    <a href="/2016/12/15/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2016-12-15
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer i..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
+                <ul class="pager">
                     
-                    <h5><a href="/about/">Phoebe Gao</a></h5>
                     
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        
+                    <li class="next">
+                        <a href="/2016/12/15/hello-world/" data-toggle="tooltip" data-placement="top"
+                           title="Hello World">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
 
-                        
+                
 
-                        
+                
 
-                        
+            </div>
 
-                        
-                    </ul>
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决"><span class="toc-text">java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决</span></a></li></ol>
                 </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-
-            
-
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
