@@ -85,21 +85,27 @@
 
 
 <meta name="description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图
-此时使用运行时发现出现了500异常，异常情况如图">
+此时使用运行时发现出现了500异常，异常情况如图
+在网上查阅资料均说这种异常出现是因为jar包与Tomcat自身的jar包冲突，而我本身使用Tomcat服务器，并没有引入外部jar包。后来查看控制台，发现有下列的warning提示
+我想会不会是class路径有问题，后来试着将原本在src下的JavaBean文件放入了自定义">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决">
 <meta property="og:url" content="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/index.html">
 <meta property="og:site_name" content="Phoebe's blog">
 <meta property="og:description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图
-此时使用运行时发现出现了500异常，异常情况如图">
+此时使用运行时发现出现了500异常，异常情况如图
+在网上查阅资料均说这种异常出现是因为jar包与Tomcat自身的jar包冲突，而我本身使用Tomcat服务器，并没有引入外部jar包。后来查看控制台，发现有下列的warning提示
+我想会不会是class路径有问题，后来试着将原本在src下的JavaBean文件放入了自定义">
 <meta property="og:image" content="http://p1.bpimg.com/4851/7c2edd4caebecfca.png">
 <meta property="og:image" content="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png">
 <meta property="og:image" content="http://p1.bpimg.com/4851/79d53fb31f0d5978.png">
-<meta property="og:updated_time" content="2016-12-15T12:54:12.000Z">
+<meta property="og:updated_time" content="2016-12-15T12:56:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决">
 <meta name="twitter:description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图
-此时使用运行时发现出现了500异常，异常情况如图">
+此时使用运行时发现出现了500异常，异常情况如图
+在网上查阅资料均说这种异常出现是因为jar包与Tomcat自身的jar包冲突，而我本身使用Tomcat服务器，并没有引入外部jar包。后来查看控制台，发现有下列的warning提示
+我想会不会是class路径有问题，后来试着将原本在src下的JavaBean文件放入了自定义">
 <meta name="twitter:image" content="http://p1.bpimg.com/4851/7c2edd4caebecfca.png">
 
 
@@ -383,9 +389,9 @@
       
 
       
-        <p>在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图<br><img src="http://p1.bpimg.com/4851/7c2edd4caebecfca.png" alt="此处输入图片的描述"></p>
+        <a id="more"></a>
+<p>在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图<br><img src="http://p1.bpimg.com/4851/7c2edd4caebecfca.png" alt="此处输入图片的描述"></p>
 <p>此时使用<jsp:usebean>运行时发现出现了500异常，异常情况如图<br><img src="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png" alt="此处输入图片的描述"></jsp:usebean></p>
-<a id="more"></a>
 <p>在网上查阅资料均说这种异常出现是因为jar包与Tomcat自身的jar包冲突，而我本身使用Tomcat服务器，并没有引入外部jar包。后来查看控制台，发现有下列的warning提示<br><img src="http://p1.bpimg.com/4851/79d53fb31f0d5978.png" alt="此处输入图片的描述"></p>
 <p>我想会不会是class路径有问题，<strong><em>后来试着将原本在src下的JavaBean文件放入了自定义的包中，结果运行正常。</em></strong>查阅资料并没有发现需要这样做的根本原因，只看到了说JavaBean的开发要求有：<br>①所有的类必须放在一个包中，在Web中没有包的类是不存在的<br>②所有类必须声明为public class<br>③属性用private封装，提供getter、setter方法<br>④一个JavaBean中至少存在一个无参构造方法</p>
 

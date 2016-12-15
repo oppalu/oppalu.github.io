@@ -383,7 +383,6 @@
         
           <hr>
 <p>折腾了一晚上终于搞定了自己的博客，觉得还是要写下来万一之后要重新弄然而zz了都不记得了，也给别的小伙伴做个参考吧~参考了很多博客，在后文会表示感谢的！用到的是hexo和github pages，当然也可以使用Jekyll（而且这个貌似是github官方比较推荐的，但是个人感觉hexo的theme更好看一点2333）废话不说了开始正题</p>
-<h2 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。这里可以参考<a href="https://hexo.io/zh-cn/docs/">Hexo的中文官方文档</a></p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/15/mac下利用hexo-github-pages建立个人博客/#more" rel="contents">
@@ -529,15 +528,14 @@
 
       
         
-          <p>在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图<br><img src="http://p1.bpimg.com/4851/7c2edd4caebecfca.png" alt="此处输入图片的描述"></p>
-<p>此时使用<jsp:useBean>运行时发现出现了500异常，异常情况如图<br><img src="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png" alt="此处输入图片的描述"></p>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <a id="more"></a>
+<p>在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图<br><img src="http://p1.bpimg.com/4851/7c2edd4caebecfca.png" alt="此处输入图片的描述"></p>
+<p>此时使用<jsp:usebean>运行时发现出现了500异常，异常情况如图<br><img src="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png" alt="此处输入图片的描述"></jsp:usebean></p>
+<p>在网上查阅资料均说这种异常出现是因为jar包与Tomcat自身的jar包冲突，而我本身使用Tomcat服务器，并没有引入外部jar包。后来查看控制台，发现有下列的warning提示<br><img src="http://p1.bpimg.com/4851/79d53fb31f0d5978.png" alt="此处输入图片的描述"></p>
+<p>我想会不会是class路径有问题，<strong><em>后来试着将原本在src下的JavaBean文件放入了自定义的包中，结果运行正常。</em></strong>查阅资料并没有发现需要这样做的根本原因，只看到了说JavaBean的开发要求有：<br>①所有的类必须放在一个包中，在Web中没有包的类是不存在的<br>②所有类必须声明为public class<br>③属性用private封装，提供getter、setter方法<br>④一个JavaBean中至少存在一个无参构造方法</p>
+
+          
         
       
     </div>
