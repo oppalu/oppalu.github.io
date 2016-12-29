@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, Phoebe Gao" />
+  <meta name="keywords" content="npm,webpack,babel," />
 
 
 
@@ -84,15 +84,19 @@
 
 
 
-<meta name="description" content="高露在Github上的个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Phoebe's blog">
-<meta property="og:url" content="http://oppalu.github.io/index.html">
+<meta name="description" content="因为人机交互课程要对之前的项目进行修改，用了别人的项目使用的是react+material-ui，所以对他们进行了一些简单的学习。这篇博文主要介绍了一下使用react时的一些工具，写的比较简单基本只有一些要点的记录，因为最开始是写给自己看的就比较简略。详细的学习可参见提供的博文地址
+npm什么是npmnpm是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react+material-ui的一些学习心得（一）">
+<meta property="og:url" content="http://oppalu.github.io/2016/12/29/react+material-ui的一些学习心得（一）/index.html">
 <meta property="og:site_name" content="Phoebe's blog">
-<meta property="og:description" content="高露在Github上的个人博客">
+<meta property="og:description" content="因为人机交互课程要对之前的项目进行修改，用了别人的项目使用的是react+material-ui，所以对他们进行了一些简单的学习。这篇博文主要介绍了一下使用react时的一些工具，写的比较简单基本只有一些要点的记录，因为最开始是写给自己看的就比较简略。详细的学习可参见提供的博文地址
+npm什么是npmnpm是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用">
+<meta property="og:updated_time" content="2016-12-29T03:31:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Phoebe's blog">
-<meta name="twitter:description" content="高露在Github上的个人博客">
+<meta name="twitter:title" content="react+material-ui的一些学习心得（一）">
+<meta name="twitter:description" content="因为人机交互课程要对之前的项目进行修改，用了别人的项目使用的是react+material-ui，所以对他们进行了一些简单的学习。这篇博文主要介绍了一下使用react时的一些工具，写的比较简单基本只有一些要点的记录，因为最开始是写给自己看的就比较简略。详细的学习可参见提供的博文地址
+npm什么是npmnpm是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://oppalu.github.io/"/>
+  <link rel="canonical" href="http://oppalu.github.io/2016/12/29/react+material-ui的一些学习心得（一）/"/>
 
 
 
 
 
-  <title> Phoebe's blog </title>
+  <title> react+material-ui的一些学习心得（一） | Phoebe's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -147,9 +151,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,9 +270,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -303,10 +305,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/12/29/react+material-ui的一些学习心得（一）/" itemprop="url">
-                  react+material-ui的一些学习心得（一）
-                </a>
+                react+material-ui的一些学习心得（一）
               
             
           </h1>
@@ -380,8 +379,7 @@
       
 
       
-        
-          <hr>
+        <hr>
 <pre><code>因为人机交互课程要对之前的项目进行修改，用了别人的项目使用的是react+material-ui，所以对他们进行了一些简单的学习。这篇博文主要介绍了一下使用react时的一些工具，写的比较简单基本只有一些要点的记录，因为最开始是写给自己看的就比较简略。详细的学习可参见提供的博文地址
 </code></pre><h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><h3 id="什么是npm"><a href="#什么是npm" class="headerlink" title="什么是npm"></a>什么是npm</h3><p>npm是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：</p>
 <ul>
@@ -389,336 +387,96 @@
 <li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</li>
 <li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</li>
 </ul>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/29/react+material-ui的一些学习心得（一）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<a id="more"></a>
+<p>###安装npm<br>安装可参见前一篇讲解hexo搭建时的下载方式</p>
+<h3 id="使用npm安装模块"><a href="#使用npm安装模块" class="headerlink" title="使用npm安装模块"></a>使用npm安装模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install xxx -g</div></pre></td></tr></table></figure>
+<p>注：-g为可选参数，加上表示全局安装</p>
+<p>本地安装放在./node_modules中，通过require()引入<br>全局安装放在/usr/local或node的安装目录，直接在命令行使用</p>
+<p>###关于package.json<br>package.json文件用来定义包的属性<br>其中dependencies为依赖包列表，如果依赖包没有安装npm会自动安装到node_modules中</p>
+<p>##webpack</p>
+<h3 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack"></a>什么是webpack</h3><p>WebPack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其打包为合适的格式以供浏览器使用。</p>
+<p>关于webpack的部分建议大家参考这篇<a href="http://blog.csdn.net/kun5706947/article/details/52596766" target="_blank" rel="external">博文</a>，属于入门精品</p>
+<h3 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h3><p>给定主文件，从它开始找项目的所有依赖文件用loaders处理他们</p>
+<p>###webpack.config.js<br>是webpack的配置文件，这个配置文件其实也是一个简单的JavaScript模块，可以把所有的与构建相关的信息放在里面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  entry:  __dirname + &quot;/app/main.js&quot;,//唯一入口文件</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + &quot;/public&quot;,//打包后的文件存放的地方</div><div class="line">    filename: &quot;bundle.js&quot;//打包后输出文件的文件名</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="使用npm执行打包任务"><a href="#使用npm执行打包任务" class="headerlink" title="使用npm执行打包任务"></a>使用npm执行打包任务</h3><p>执行类似于node_modules/.bin/webpack这样的命令其实是比较烦人且容易出错的，直接使用npm可以引导任务执行，对其进行配置后可以使用简单的npm start命令来代替这些繁琐的命令。在package.json中对npm的脚本部分进行相关设置即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">   &quot;start&quot;: &quot;webpack&quot; //配置的地方就是这里啦，相当于把npm的start命令指向webpack命令</div><div class="line"> &#125;,</div></pre></td></tr></table></figure>
+<h3 id="使用webpack构建本地服务器"><a href="#使用webpack构建本地服务器" class="headerlink" title="使用webpack构建本地服务器"></a>使用webpack构建本地服务器</h3><p>使用本地服务器可以使得浏览器监测到代码修改并自动刷新修改后的结果，在webpack中进行配置之前需要单独安装它作为项目依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack-dev-server</div></pre></td></tr></table></figure></p>
+<p>在devserver的配置选项中inline设为true时源文件改变时会自动刷新页面</p>
+<p>###loader<br>通过不同的loader，webpack通过调用外部的工具对不同格式的文件进行处理</p>
+<p>配置可以使用配置文件中的module，其中：</p>
+<ul>
+<li>test：一个匹配loaders要处理的文件的拓展名的正则表达式</li>
+<li>loader：loader</li>
+<li>include/exclude：手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）</li>
+<li>query：为loaders提供额外的设置选项</li>
+</ul>
+<p>例如在我们的项目中就使用babel来处理jsx文件，关于babel介绍参见下文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">loaders: [ &#123;</div><div class="line">        test: /\.jsx?$/,</div><div class="line">        exclude: /node_modules/,</div><div class="line">        loader: &apos;babel&apos;,</div><div class="line"></div><div class="line">        query: &#123;</div><div class="line">           presets: [&apos;es2015&apos;, &apos;react&apos;]</div><div class="line">        &#125;</div><div class="line">     &#125;]</div></pre></td></tr></table></figure></p>
+<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><h3 id="什么是Babel"><a href="#什么是Babel" class="headerlink" title="什么是Babel"></a>什么是Babel</h3><p><a href="http://babeljs.cn/" target="_blank" rel="external">Babel</a>是一个编译JavaScript的平台，可以编译下一代的JavaScript标准（ES6，ES7）以及基于JavaScript进行了拓展的语言</p>
+<h3 id="Babel的安装与配置"><a href="#Babel的安装与配置" class="headerlink" title="Babel的安装与配置"></a>Babel的安装与配置</h3><p>Babel其实是几个模块化的包，其核心功能位于称为babel-core的npm包中，不过webpack把它们整合在一起使用，但是对于每一个你需要的功能或拓展，你都需要安装单独的包（用得最多的是解析Es6的babel-preset-es2015包和解析JSX的babel-preset-react包），使用npm对这些包进行安装</p>
+<p>配置则在webpack配置文件的module中（见上文）</p>
+<hr>
+<p>PS：在学习的过程中，参考了许多博客，这里对他们表示感谢！<br><a href="http://blog.csdn.net/kun5706947/article/details/52596766" target="_blank" rel="external">http://blog.csdn.net/kun5706947/article/details/52596766</a><br><a href="http://blog.csdn.net/zccz14/article/details/51421324" target="_blank" rel="external">http://blog.csdn.net/zccz14/article/details/51421324</a><br><a href="http://www.runoob.com/nodejs/nodejs-npm.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-npm.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2016/12/15/mac下利用hexo-github-pages建立个人博客/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Phoebe">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Phoebe's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Phoebe's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/15/mac下利用hexo-github-pages建立个人博客/" itemprop="url">
-                  mac下利用hexo+github pages建立个人博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T19:22:16+08:00">
-                2016-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/npm/" rel="tag"># npm</a>
           
-
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2016/12/15/mac下利用hexo-github-pages建立个人博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/mac下利用hexo-github-pages建立个人博客/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/babel/" rel="tag"># babel</a>
           
-
-          
-
-          
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <hr>
-<p>折腾了一晚上终于搞定了自己的博客，觉得还是要写下来万一之后要重新弄然而zz了都不记得了，也给别的小伙伴做个参考吧~参考了很多博客，在后文会表示感谢的！用到的是hexo和github pages，当然也可以使用Jekyll（而且这个貌似是github官方比较推荐的，但是个人感觉hexo的theme更好看一点2333）废话不说了开始正题</p>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/15/mac下利用hexo-github-pages建立个人博客/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/15/mac下利用hexo-github-pages建立个人博客/" rel="next" title="mac下利用hexo+github pages建立个人博客">
+                <i class="fa fa-chevron-left"></i> mac下利用hexo+github pages建立个人博客
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Phoebe">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Phoebe's blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Phoebe's blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/" itemprop="url">
-                  java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T14:37:25+08:00">
-                2016-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/J2EE/" itemprop="url" rel="index">
-                    <span itemprop="name">J2EE</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图<br><img src="http://p1.bpimg.com/4851/7c2edd4caebecfca.png" alt="此处输入图片的描述"></p>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -726,6 +484,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/29/react+material-ui的一些学习心得（一）/"
+           data-title="react+material-ui的一些学习心得（一）" data-url="http://oppalu.github.io/2016/12/29/react+material-ui的一些学习心得（一）/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -745,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -828,6 +603,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#npm"><span class="nav-number">1.</span> <span class="nav-text">npm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是npm"><span class="nav-number">1.1.</span> <span class="nav-text">什么是npm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用npm安装模块"><span class="nav-number">1.2.</span> <span class="nav-text">使用npm安装模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是webpack"><span class="nav-number">1.3.</span> <span class="nav-text">什么是webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作方式"><span class="nav-number">1.4.</span> <span class="nav-text">工作方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用npm执行打包任务"><span class="nav-number">1.5.</span> <span class="nav-text">使用npm执行打包任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用webpack构建本地服务器"><span class="nav-number">1.6.</span> <span class="nav-text">使用webpack构建本地服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Babel"><span class="nav-number">2.</span> <span class="nav-text">Babel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Babel"><span class="nav-number">2.1.</span> <span class="nav-text">什么是Babel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Babel的安装与配置"><span class="nav-number">2.2.</span> <span class="nav-text">Babel的安装与配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -933,6 +724,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
