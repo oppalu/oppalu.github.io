@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="J2EE,JSP,JavaBean," />
+  <meta name="keywords" content="Mysql,Hibernate," />
 
 
 
@@ -84,21 +84,19 @@
 
 
 
-<meta name="description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图">
-<meta name="keywords" content="J2EE,JSP,JavaBean">
+<meta name="description" content="今天开始前台与数据库结合起来写代码了，结果发现存入数据库的中文一直是？，而我数据库建表时设置了UTF-8，JSP界面上也设置了UTF-8，这时候就比较懵逼了。。。想想也在配置文件里加了编码过滤器还有哪里能出问题 然后靠着机智的网友们发现可能是Hibernate的问题，于是在配置文件中访问数据库的url后面加了编码的设置后来发现这样还是不行，我也很绝望啊。后来在数据源设置的url后也加上了?use">
+<meta name="keywords" content="Mysql,Hibernate">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决">
-<meta property="og:url" content="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/index.html">
+<meta property="og:title" content="解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题">
+<meta property="og:url" content="http://oppalu.github.io/2017/03/05/解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题/index.html">
 <meta property="og:site_name" content="Phoebe's blog">
-<meta property="og:description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图">
-<meta property="og:image" content="http://p1.bpimg.com/4851/7c2edd4caebecfca.png">
-<meta property="og:image" content="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png">
-<meta property="og:image" content="http://p1.bpimg.com/4851/79d53fb31f0d5978.png">
-<meta property="og:updated_time" content="2016-12-15T13:07:49.000Z">
+<meta property="og:description" content="今天开始前台与数据库结合起来写代码了，结果发现存入数据库的中文一直是？，而我数据库建表时设置了UTF-8，JSP界面上也设置了UTF-8，这时候就比较懵逼了。。。想想也在配置文件里加了编码过滤器还有哪里能出问题 然后靠着机智的网友们发现可能是Hibernate的问题，于是在配置文件中访问数据库的url后面加了编码的设置后来发现这样还是不行，我也很绝望啊。后来在数据源设置的url后也加上了?use">
+<meta property="og:image" content="http://www.jb51.net/article/97725.htm">
+<meta property="og:updated_time" content="2017-03-04T16:20:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决">
-<meta name="twitter:description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图">
-<meta name="twitter:image" content="http://p1.bpimg.com/4851/7c2edd4caebecfca.png">
+<meta name="twitter:title" content="解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题">
+<meta name="twitter:description" content="今天开始前台与数据库结合起来写代码了，结果发现存入数据库的中文一直是？，而我数据库建表时设置了UTF-8，JSP界面上也设置了UTF-8，这时候就比较懵逼了。。。想想也在配置文件里加了编码过滤器还有哪里能出问题 然后靠着机智的网友们发现可能是Hibernate的问题，于是在配置文件中访问数据库的url后面加了编码的设置后来发现这样还是不行，我也很绝望啊。后来在数据源设置的url后也加上了?use">
+<meta name="twitter:image" content="http://www.jb51.net/article/97725.htm">
 
 
 
@@ -126,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/"/>
+  <link rel="canonical" href="http://oppalu.github.io/2017/03/05/解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题/"/>
 
 
 
 
 
-  <title> java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决 | Phoebe's blog </title>
+  <title> 解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题 | Phoebe's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -283,7 +281,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/">
+  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2017/03/05/解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Phoebe">
@@ -307,7 +305,7 @@
             
             
               
-                java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决
+                解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题
               
             
           </h1>
@@ -320,8 +318,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T14:37:25+08:00">
-                2016-12-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T00:19:34+08:00">
+                2017-03-05
               </time>
             
 
@@ -339,8 +337,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/J2EE/" itemprop="url" rel="index">
-                    <span itemprop="name">J2EE</span>
+                  <a href="/categories/Hibernate/" itemprop="url" rel="index">
+                    <span itemprop="name">Hibernate</span>
                   </a>
                 </span>
 
@@ -354,8 +352,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/" itemprop="commentCount"></span>
+                <a href="/2017/03/05/解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,11 +379,11 @@
       
 
       
-        <p>在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图<br><img src="http://p1.bpimg.com/4851/7c2edd4caebecfca.png" alt="此处输入图片的描述"></p>
-<a id="more"></a>
-<p>此时使用<jsp:usebean>运行时发现出现了500异常，异常情况如图<br><img src="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png" alt="此处输入图片的描述"></jsp:usebean></p>
-<p>在网上查阅资料均说这种异常出现是因为jar包与Tomcat自身的jar包冲突，而我本身使用Tomcat服务器，并没有引入外部jar包。后来查看控制台，发现有下列的warning提示<br><img src="http://p1.bpimg.com/4851/79d53fb31f0d5978.png" alt="此处输入图片的描述"></p>
-<p>我想会不会是class路径有问题，<strong><em>后来试着将原本在src下的JavaBean文件放入了自定义的包中，结果运行正常。</em></strong>查阅资料并没有发现需要这样做的根本原因，只看到了说JavaBean的开发要求有：<br>①所有的类必须放在一个包中，在Web中没有包的类是不存在的<br>②所有类必须声明为public class<br>③属性用private封装，提供getter、setter方法<br>④一个JavaBean中至少存在一个无参构造方法</p>
+        <hr>
+<p>今天开始前台与数据库结合起来写代码了，结果发现存入数据库的中文一直是？，而我数据库建表时设置了UTF-8，JSP界面上也设置了UTF-8，这时候就比较懵逼了。。。想想也在配置文件里加了编码过滤器还有哪里能出问题</p>
+<p>然后靠着机智的网友们发现可能是Hibernate的问题，于是在配置文件中访问数据库的url后面加了编码的设置<br><img src="http://www.jb51.net/article/97725.htm" alt="此处输入图片的描述"><br>后来发现这样还是不行，我也很绝望啊。后来在数据源设置的url后也加上了<strong>?useUnicode=true&amp;characterEncoding=UTF-8</strong>，然后就成功了</p>
+<p>完整配置数据库部分的代码附上（以我的项目为例）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;dataSource&quot; class=&quot;org.springframework.jdbc.datasource.DriverManagerDataSource&quot;&gt;</div><div class="line">        &lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;/property&gt;</div><div class="line">        &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/j2ee?useUnicode=true&amp;amp;characterEncoding=UTF-8&quot;&gt;&lt;/property&gt;</div><div class="line">        &lt;property name=&quot;username&quot; value=&quot;root&quot;&gt;&lt;/property&gt;</div><div class="line">        &lt;property name=&quot;password&quot; value=&quot;2a617&quot;&gt;&lt;/property&gt;</div><div class="line"></div><div class="line">    &lt;/bean&gt;</div><div class="line"></div><div class="line">    &lt;!--session工厂,spring和hibernate整合配置,扫描所有dao--&gt;</div><div class="line">    &lt;bean id=&quot;sessionFactory&quot; class=&quot;org.springframework.orm.hibernate5.LocalSessionFactoryBean&quot;&gt;</div><div class="line">        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&gt;</div><div class="line">        &lt;property name=&quot;packagesToScan&quot; value=&quot;com.phoebe.model&quot; /&gt;</div><div class="line">        &lt;property name=&quot;hibernateProperties&quot;&gt;</div><div class="line">            &lt;props&gt;</div><div class="line">                &lt;prop key=&quot;hibernate.dialect&quot;&gt;org.hibernate.dialect.MySQLDialect&lt;/prop&gt;</div><div class="line">                &lt;prop key=&quot;hibernate.show_sql&quot;&gt;true&lt;/prop&gt;</div><div class="line">                &lt;prop key=&quot;hibernate.format_sql&quot;&gt;true&lt;/prop&gt;</div><div class="line">                &lt;prop key=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql://localhost:3306/j2ee?useUnicode=true&amp;amp;characterEncoding=UTF-8&lt;/prop&gt;</div><div class="line">                &lt;prop key=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/prop&gt;</div><div class="line">            &lt;/props&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">    &lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+<p>然后在查询的过程中觉得<a href="http://www.jb51.net/article/97725.htm" target="_blank" rel="external">这个博文</a>比较全，放出来供大家学习参考~</p>
 
       
     </div>
@@ -409,11 +407,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/J2EE/" rel="tag"># J2EE</a>
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
           
-            <a href="/tags/JSP/" rel="tag"># JSP</a>
-          
-            <a href="/tags/JavaBean/" rel="tag"># JavaBean</a>
+            <a href="/tags/Hibernate/" rel="tag"># Hibernate</a>
           
         </div>
       
@@ -422,15 +418,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/15/mac下利用hexo-github-pages建立个人博客/" rel="next" title="mac下利用hexo+github pages建立个人博客">
-                <i class="fa fa-chevron-left"></i> mac下利用hexo+github pages建立个人博客
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/29/react+material-ui的一些学习心得（二）/" rel="prev" title="react+material-ui的一些学习心得（二）">
+                react+material-ui的一些学习心得（二） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -456,8 +452,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/"
-           data-title="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决" data-url="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/">
+      <div class="ds-thread" data-thread-key="2017/03/05/解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题/"
+           data-title="解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题" data-url="http://oppalu.github.io/2017/03/05/解决Spring+SpringMVC+Hibernate进行web开发时的中文乱码问题/">
       </div>
     
   </div>
