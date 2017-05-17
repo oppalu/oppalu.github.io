@@ -279,6 +279,132 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2017/05/17/MapReduce学习笔记/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Phoebe">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Phoebe's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Phoebe's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/17/MapReduce学习笔记/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-17T17:23:56+08:00">
+                2017-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/05/17/MapReduce学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/17/MapReduce学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MapReduce学习笔记"><a href="#MapReduce学习笔记" class="headerlink" title="MapReduce学习笔记"></a>MapReduce学习笔记</h1><p>标签（空格分隔）： MapReduce</p>
+<hr>
+<p>一脸懵逼的想要开始学习大数据，发现什么Hadoop，MapReduce，Hive啥啥啥的都不知道是什么。。。慢慢学吧😂今天先看看MapReduce是什么，研读了一下知乎大神的说法（因为比较通俗易懂）<br>    先说说大数据是啥吧，比如有个程序要分析很大的数据量（比如分析百度百科的所有词条），那可能一台电脑需要很久才能完成这个任务。于是考虑并行计算，即将这个任务分解成很多小任务，然后将这些小任务分配到不同的PC上执行，之后再对每台PC执行的结果进行汇总。这就引入了MapReduce模型。<br>    然后这些PC可以两类：Master和Worker。Master类似于工头负责调度，Worker则是干活的工人，Worker中又分为Mapper和Reducer。（下午引用知乎<a href="https://www.zhihu.com/question/23345991/answer/53996060" target="_blank" rel="external">刘通的讲解</a>）：<br> 假设我们有一个巨大的数据集，里面有海量规模的元素，元素的个数为M，每个元素都需要进行同一个函数处理。于是Master将M分成许多小份，然后每一份分给一个Mapper来做，Mapper干完活儿（执行完函数），将自己那一份儿活儿的结果传给Reducer。Reducer之后统计汇总各个Mapper传过来的结果，得到最后的任务的答案。当然，这是最简单的表述，因为实际上Master的任务分配过程是很复杂的，会考虑任务时间？任务是否出错？网络通讯负担等等等等许多问题. 假设原始任务的Input个数为M,output个数为N。Mapper的个数为P，Reducer的个数为R。则有关系，M〉P〉N〉R。也就是说，一个Mapper要做M/P个input的处理任务，一个Reducer要做N/R个output的汇总工作。同时Mapper对数据进行分类，输出键值对值的集合（key就是类别）。这样Reducer拿到的都是同类数据处理也较方便。<br> 拿张图解释：<img src="http://i4.buimg.com/588926/9f8bcfac5e8e9646.png" alt="此处输入图片的描述"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2017/04/09/关于mac -bash- hexo- command not found的解决/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1179,7 +1305,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
