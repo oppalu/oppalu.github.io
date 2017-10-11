@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="J2EE,JSP,JavaBean," />
+  <meta name="keywords" content="机器学习,LDA," />
 
 
 
@@ -84,21 +84,25 @@
 
 
 
-<meta name="description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图">
-<meta name="keywords" content="J2EE,JSP,JavaBean">
+<meta name="description" content="基本思想输入分词后的文章集（一篇文章一行，是一个词袋）和主题数K，输出每篇文章的每个词的主题编号、每篇文章的主题概率分布、每个主题下词的概率分布等 LDA相关的前置知识二项分布C(n,k)p^k(1-p)^(n-k) 多项分布 Beta分布————二项分布的共轭先验分布期望是a/a+b dirichlet分布 gamma函数（阶乘在实数范围的扩展） 定义 性质  共轭先验分布先验概率，就是常识、">
+<meta name="keywords" content="机器学习,LDA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决">
-<meta property="og:url" content="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/index.html">
+<meta property="og:title" content="机器学习related(2) ———— LDA">
+<meta property="og:url" content="http://oppalu.github.io/2017/10/11/机器学习related(2) ———— LDA/index.html">
 <meta property="og:site_name" content="Phoebe's blog">
-<meta property="og:description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图">
-<meta property="og:image" content="http://p1.bpimg.com/4851/7c2edd4caebecfca.png">
-<meta property="og:image" content="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png">
-<meta property="og:image" content="http://p1.bpimg.com/4851/79d53fb31f0d5978.png">
-<meta property="og:updated_time" content="2017-05-23T16:27:09.000Z">
+<meta property="og:description" content="基本思想输入分词后的文章集（一篇文章一行，是一个词袋）和主题数K，输出每篇文章的每个词的主题编号、每篇文章的主题概率分布、每个主题下词的概率分布等 LDA相关的前置知识二项分布C(n,k)p^k(1-p)^(n-k) 多项分布 Beta分布————二项分布的共轭先验分布期望是a/a+b dirichlet分布 gamma函数（阶乘在实数范围的扩展） 定义 性质  共轭先验分布先验概率，就是常识、">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeimedsgwj31be09cgnz.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeio09ov4j30os07u75t.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkdi06zm83j30pg05wdi9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0060lm7Tly1fkeipcgvioj30q608kdh8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0060lm7Tly1fkdhpany7cj30cq03gjrj.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkdhq0ynt6j306202g749.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkdhq11opij306w02adfu.jpg">
+<meta property="og:updated_time" content="2017-10-11T12:41:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决">
-<meta name="twitter:description" content="在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图">
-<meta name="twitter:image" content="http://p1.bpimg.com/4851/7c2edd4caebecfca.png">
+<meta name="twitter:title" content="机器学习related(2) ———— LDA">
+<meta name="twitter:description" content="基本思想输入分词后的文章集（一篇文章一行，是一个词袋）和主题数K，输出每篇文章的每个词的主题编号、每篇文章的主题概率分布、每个主题下词的概率分布等 LDA相关的前置知识二项分布C(n,k)p^k(1-p)^(n-k) 多项分布 Beta分布————二项分布的共轭先验分布期望是a/a+b dirichlet分布 gamma函数（阶乘在实数范围的扩展） 定义 性质  共轭先验分布先验概率，就是常识、">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeimedsgwj31be09cgnz.jpg">
 
 
 
@@ -126,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/"/>
+  <link rel="canonical" href="http://oppalu.github.io/2017/10/11/机器学习related(2) ———— LDA/"/>
 
 
 
 
 
-  <title> java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决 | Phoebe's blog </title>
+  <title> 机器学习related(2) ———— LDA | Phoebe's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -283,7 +287,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/">
+  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2017/10/11/机器学习related(2) ———— LDA/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Phoebe">
@@ -307,7 +311,7 @@
             
             
               
-                java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决
+                机器学习related(2) ———— LDA
               
             
           </h1>
@@ -320,8 +324,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T14:37:25+08:00">
-                2016-12-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-11T20:39:40+08:00">
+                2017-10-11
               </time>
             
 
@@ -339,8 +343,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/J2EE/" itemprop="url" rel="index">
-                    <span itemprop="name">J2EE</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -354,8 +358,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/" itemprop="commentCount"></span>
+                <a href="/2017/10/11/机器学习related(2) ———— LDA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/11/机器学习related(2) ———— LDA/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,11 +385,25 @@
       
 
       
-        <p>在学习JSP与JavaBean的过程中，自己写了一小段代码，代码结构如图<br><img src="http://p1.bpimg.com/4851/7c2edd4caebecfca.png" alt="此处输入图片的描述"></p>
-<a id="more"></a>
-<p>此时使用<jsp:usebean>运行时发现出现了500异常，异常情况如图<br><img src="http://p1.bpimg.com/4851/ffbf09b4ab40c3c3.png" alt="此处输入图片的描述"></jsp:usebean></p>
-<p>在网上查阅资料均说这种异常出现是因为jar包与Tomcat自身的jar包冲突，而我本身使用Tomcat服务器，并没有引入外部jar包。后来查看控制台，发现有下列的warning提示<br><img src="http://p1.bpimg.com/4851/79d53fb31f0d5978.png" alt="此处输入图片的描述"></p>
-<p>我想会不会是class路径有问题，<strong><em>后来试着将原本在src下的JavaBean文件放入了自定义的包中，结果运行正常。</em></strong>查阅资料并没有发现需要这样做的根本原因，只看到了说JavaBean的开发要求有：<br>①所有的类必须放在一个包中，在Web中没有包的类是不存在的<br>②所有类必须声明为public class<br>③属性用private封装，提供getter、setter方法<br>④一个JavaBean中至少存在一个无参构造方法</p>
+        <hr>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>输入分词后的文章集（一篇文章一行，是一个词袋）和主题数K，输出每篇文章的每个词的主题编号、每篇文章的主题概率分布、每个主题下词的概率分布等</p>
+<h2 id="LDA相关的前置知识"><a href="#LDA相关的前置知识" class="headerlink" title="LDA相关的前置知识"></a>LDA相关的前置知识</h2><h3 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h3><p>C(n,k)<em>p^k</em>(1-p)^(n-k)</p>
+<h3 id="多项分布"><a href="#多项分布" class="headerlink" title="多项分布"></a>多项分布</h3><p><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeimedsgwj31be09cgnz.jpg" alt="此处输入图片的描述"></p>
+<h3 id="Beta分布————二项分布的共轭先验分布"><a href="#Beta分布————二项分布的共轭先验分布" class="headerlink" title="Beta分布————二项分布的共轭先验分布"></a>Beta分布————二项分布的共轭先验分布</h3><p>期望是a/a+b<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeio09ov4j30os07u75t.jpg" alt="此处输入图片的描述"><br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fkdi06zm83j30pg05wdi9.jpg" alt="此处输入图片的描述"></p>
+<h3 id="dirichlet分布"><a href="#dirichlet分布" class="headerlink" title="dirichlet分布"></a>dirichlet分布</h3><p><img src="http://ww1.sinaimg.cn/large/0060lm7Tly1fkeipcgvioj30q608kdh8.jpg" alt="此处输入图片的描述"></p>
+<h3 id="gamma函数（阶乘在实数范围的扩展）"><a href="#gamma函数（阶乘在实数范围的扩展）" class="headerlink" title="gamma函数（阶乘在实数范围的扩展）"></a>gamma函数（阶乘在实数范围的扩展）</h3><ol>
+<li>定义<br><img src="http://ww1.sinaimg.cn/large/0060lm7Tly1fkdhpany7cj30cq03gjrj.jpg" alt="此处输入图片的描述"></li>
+<li>性质<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkdhq0ynt6j306202g749.jpg" alt="此处输入图片的描述"><br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkdhq11opij306w02adfu.jpg" alt="此处输入图片的描述"></li>
+</ol>
+<h3 id="共轭先验分布"><a href="#共轭先验分布" class="headerlink" title="共轭先验分布"></a>共轭先验分布</h3><p>先验概率，就是常识、经验所透露出的“因”的概率，后验概率就是在知道“果”之后，去推测“因”的概率。<br>如果后验概率P(θ|x)和先验概率p(θ)满足同样的分布律，那么，先验分布和后验分布被叫做共轭分布，同时，先验分布叫做似然函数的共轭先验分布</p>
+<h2 id="LDA的生成过程"><a href="#LDA的生成过程" class="headerlink" title="LDA的生成过程"></a>LDA的生成过程</h2><p>1.对每一篇文档，从主题分布中抽取一个主题；<br>2.从上述被抽到的主题所对应的单词分布中抽取一个单词；<br>3.重复上述过程直至遍历文档中的每一个单词。</p>
+<h2 id="LDA整体流程"><a href="#LDA整体流程" class="headerlink" title="LDA整体流程"></a>LDA整体流程</h2><p>文档集合D中每个文档d看作一个单词序列<w1,w2,...,wn>，wi表示第i个单词，设d有n个单词。<br>D中涉及的所有不同单词组成一个大集合VOCABULARY（简称VOC），LDA以文档集合D作为输入，希望训练出的两个结果向量（设聚成k个topic，VOC中共包含m个词）：<br>①对每个D中的文档d，对应到不同Topic的概率θd(pt1,…,ptk)，其中，pti表示d对应T中第i个topic的概率。pti=nti/n，其中nti表示d中对应第i个topic的词的数目，n是d中所有词的总数。<br>②对每个T中的topic t，生成不同单词的概率φt(pw1,…,pwm)，其中，pwi表示t生成VOC中第i个单词的概率。pwi=Nwi/N，其中Nwi表示对应到topict的VOC中第i个单词的数目，N表示所有对应到topict的单词总数。<br>LDA的核心公式如下：<br>p(w|d)=p(w|t)<em>p(t|d)<br>直观的看这个公式，<em>*就是可以通过当前的θd和φt给出了文档d中出现单词w的概率</em></em>。其中p(t|d)利用θd计算得到，p(w|t)利用φt计算得到。</w1,w2,...,wn></p>
+<h2 id="LDA的学习过程"><a href="#LDA的学习过程" class="headerlink" title="LDA的学习过程"></a>LDA的学习过程</h2><p>LDA算法开始时，先随机地给θd和φt赋值（对所有的d和t）。然后不断重复下面的迭代的学习过程：</p>
+<ol>
+<li>针对一个特定的文档ds中的第i单词wi，如果令该单词对应的topic为tj，可以把上述公式改写为：pj(wi|ds)=p(wi|tj)*p(tj|ds)</li>
+<li>枚举T中的topic，得到所有的pj(wi|ds)，其中j取值1~k。然后可以根据这些概率值结果为ds中的第i个单词wi选择一个topic。最简单的想法是取令pj(wi|ds)最大的tj</li>
+<li>如果ds中的第i个单词wi在这里选择了一个与原先不同的topic，就会对θd和φt有影响了。它们的影响又会反过来影响对上面提到的p(w|d)的计算。对D中所有的d中的所有w进行一次p(w|d)的计算并重新选择topic看作一次迭代。这样进行n次循环迭代之后，就会收敛到LDA所需要的结果了。</li>
+</ol>
 
       
     </div>
@@ -409,11 +427,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/J2EE/" rel="tag"># J2EE</a>
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
-            <a href="/tags/JSP/" rel="tag"># JSP</a>
-          
-            <a href="/tags/JavaBean/" rel="tag"># JavaBean</a>
+            <a href="/tags/LDA/" rel="tag"># LDA</a>
           
         </div>
       
@@ -422,15 +438,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/15/mac下利用hexo-github-pages建立个人博客/" rel="next" title="mac下利用hexo+github pages建立个人博客">
-                <i class="fa fa-chevron-left"></i> mac下利用hexo+github pages建立个人博客
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/机器学习related(1)/" rel="prev" title="机器学习related(1)">
+                机器学习related(1) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -456,8 +472,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/"
-           data-title="java.lang.ClassNotFoundException: org.apache.jsp.index_jsp问题的解决" data-url="http://oppalu.github.io/2016/12/15/java-lang-ClassNotFoundException-org-apache-jsp-index-jsp问题的解决/">
+      <div class="ds-thread" data-thread-key="2017/10/11/机器学习related(2) ———— LDA/"
+           data-title="机器学习related(2) ———— LDA" data-url="http://oppalu.github.io/2017/10/11/机器学习related(2) ———— LDA/">
       </div>
     
   </div>
@@ -481,8 +497,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -564,6 +589,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思想"><span class="nav-number">1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDA相关的前置知识"><span class="nav-number">2.</span> <span class="nav-text">LDA相关的前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二项分布"><span class="nav-number">2.1.</span> <span class="nav-text">二项分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项分布"><span class="nav-number">2.2.</span> <span class="nav-text">多项分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Beta分布————二项分布的共轭先验分布"><span class="nav-number">2.3.</span> <span class="nav-text">Beta分布————二项分布的共轭先验分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dirichlet分布"><span class="nav-number">2.4.</span> <span class="nav-text">dirichlet分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gamma函数（阶乘在实数范围的扩展）"><span class="nav-number">2.5.</span> <span class="nav-text">gamma函数（阶乘在实数范围的扩展）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共轭先验分布"><span class="nav-number">2.6.</span> <span class="nav-text">共轭先验分布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDA的生成过程"><span class="nav-number">3.</span> <span class="nav-text">LDA的生成过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDA整体流程"><span class="nav-number">4.</span> <span class="nav-text">LDA整体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDA的学习过程"><span class="nav-number">5.</span> <span class="nav-text">LDA的学习过程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
