@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="MapReduce," />
+  <meta name="keywords" content="机器学习,神经网络," />
 
 
 
@@ -84,19 +84,32 @@
 
 
 
-<meta name="description" content="一脸懵逼的想要开始学习大数据，发现什么Hadoop，MapReduce，Hive啥啥啥的都不知道是什么。。。慢慢学吧😂今天先看看MapReduce是什么，研读了一下知乎大神的说法（因为比较通俗易懂）    先说说大数据是啥吧，比如有个程序要分析很大的数据量（比如分析百度百科的所有词条），那可能一台电脑需要很久才能完成这个任务。于是考虑并行计算，即将这个任务分解成很多小任务，然后将这些小任务分配到">
-<meta name="keywords" content="MapReduce">
+<meta name="description" content="Model Representation神经网络模型是许多逻辑单元(Logistics Unit)按照不同的层级组织起来的网络，每一层的输出变量作为下一层的输入变量。如下图，是一个三层的神经网络，第一层为输入层(Input Layer)，最后一层为输出层(Output Layer)，中间的一层为隐藏层(Hidden Layer)。我们为每一层都增加一个偏倚单位(Bias Unit【值永远为1】)">
+<meta name="keywords" content="机器学习,神经网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MapReduce学习笔记">
-<meta property="og:url" content="http://oppalu.github.io/2017/05/17/MapReduce学习笔记/index.html">
+<meta property="og:title" content="机器学习related(3) ———— 神经网络">
+<meta property="og:url" content="http://oppalu.github.io/2017/10/15/机器学习related(3) ———— 神经网络/index.html">
 <meta property="og:site_name" content="Phoebe's blog">
-<meta property="og:description" content="一脸懵逼的想要开始学习大数据，发现什么Hadoop，MapReduce，Hive啥啥啥的都不知道是什么。。。慢慢学吧😂今天先看看MapReduce是什么，研读了一下知乎大神的说法（因为比较通俗易懂）    先说说大数据是啥吧，比如有个程序要分析很大的数据量（比如分析百度百科的所有词条），那可能一台电脑需要很久才能完成这个任务。于是考虑并行计算，即将这个任务分解成很多小任务，然后将这些小任务分配到">
-<meta property="og:image" content="http://i4.buimg.com/588926/9f8bcfac5e8e9646.png">
-<meta property="og:updated_time" content="2017-05-23T16:28:17.000Z">
+<meta property="og:description" content="Model Representation神经网络模型是许多逻辑单元(Logistics Unit)按照不同的层级组织起来的网络，每一层的输出变量作为下一层的输入变量。如下图，是一个三层的神经网络，第一层为输入层(Input Layer)，最后一层为输出层(Output Layer)，中间的一层为隐藏层(Hidden Layer)。我们为每一层都增加一个偏倚单位(Bias Unit【值永远为1】)">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkeqgyaa2wj30wi0ka4aw.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/0060lm7Tly1fkeqitakp0j312o07odoy.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/0060lm7Tly1fkeqk6w9yoj30v208stcv.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkeqzqe0soj30ny0bodl4.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkflo7da8hj314g0v4n6k.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/0060lm7Tly1fkfl0cq5hyj30c602kdfs.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkfl0crrmcj30cc026mx4.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkfl0crxo0j30hu02c74b.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/0060lm7Tly1fkgmuouzu0j311k052q41.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkgp3cxh7aj30no0hw76m.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/0060lm7Tly1fkgp3cxf1sj30ci05ujrx.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/0060lm7Tly1fkjb9acdxdj30oo0buacw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0060lm7Tly1fkjcro66vlj30zw0b4gq7.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkjcxrpxfyj31880g8n8w.jpg">
+<meta property="og:updated_time" content="2017-10-16T02:21:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MapReduce学习笔记">
-<meta name="twitter:description" content="一脸懵逼的想要开始学习大数据，发现什么Hadoop，MapReduce，Hive啥啥啥的都不知道是什么。。。慢慢学吧😂今天先看看MapReduce是什么，研读了一下知乎大神的说法（因为比较通俗易懂）    先说说大数据是啥吧，比如有个程序要分析很大的数据量（比如分析百度百科的所有词条），那可能一台电脑需要很久才能完成这个任务。于是考虑并行计算，即将这个任务分解成很多小任务，然后将这些小任务分配到">
-<meta name="twitter:image" content="http://i4.buimg.com/588926/9f8bcfac5e8e9646.png">
+<meta name="twitter:title" content="机器学习related(3) ———— 神经网络">
+<meta name="twitter:description" content="Model Representation神经网络模型是许多逻辑单元(Logistics Unit)按照不同的层级组织起来的网络，每一层的输出变量作为下一层的输入变量。如下图，是一个三层的神经网络，第一层为输入层(Input Layer)，最后一层为输出层(Output Layer)，中间的一层为隐藏层(Hidden Layer)。我们为每一层都增加一个偏倚单位(Bias Unit【值永远为1】)">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkeqgyaa2wj30wi0ka4aw.jpg">
 
 
 
@@ -124,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://oppalu.github.io/2017/05/17/MapReduce学习笔记/"/>
+  <link rel="canonical" href="http://oppalu.github.io/2017/10/15/机器学习related(3) ———— 神经网络/"/>
 
 
 
 
 
-  <title> MapReduce学习笔记 | Phoebe's blog </title>
+  <title> 机器学习related(3) ———— 神经网络 | Phoebe's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -281,7 +294,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2017/05/17/MapReduce学习笔记/">
+  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2017/10/15/机器学习related(3) ———— 神经网络/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Phoebe">
@@ -305,7 +318,7 @@
             
             
               
-                MapReduce学习笔记
+                机器学习related(3) ———— 神经网络
               
             
           </h1>
@@ -318,8 +331,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-17T17:23:56+08:00">
-                2017-05-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-15T23:46:26+08:00">
+                2017-10-15
               </time>
             
 
@@ -337,8 +350,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -352,8 +365,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/05/17/MapReduce学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/17/MapReduce学习笔记/" itemprop="commentCount"></span>
+                <a href="/2017/10/15/机器学习related(3) ———— 神经网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/15/机器学习related(3) ———— 神经网络/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,7 +392,13 @@
       
 
       
-        <p>一脸懵逼的想要开始学习大数据，发现什么Hadoop，MapReduce，Hive啥啥啥的都不知道是什么。。。慢慢学吧😂今天先看看MapReduce是什么，研读了一下知乎大神的说法（因为比较通俗易懂）<br>    先说说大数据是啥吧，比如有个程序要分析很大的数据量（比如分析百度百科的所有词条），那可能一台电脑需要很久才能完成这个任务。于是考虑并行计算，即将这个任务分解成很多小任务，然后将这些小任务分配到不同的PC上执行，之后再对每台PC执行的结果进行汇总。这就引入了MapReduce模型。<br>    然后这些PC可以两类：Master和Worker。Master类似于工头负责调度，Worker则是干活的工人，Worker中又分为Mapper和Reducer。（下午引用知乎<a href="https://www.zhihu.com/question/23345991/answer/53996060" target="_blank" rel="external">刘通的讲解</a>）：<br> 假设我们有一个巨大的数据集，里面有海量规模的元素，元素的个数为M，每个元素都需要进行同一个函数处理。于是Master将M分成许多小份，然后每一份分给一个Mapper来做，Mapper干完活儿（执行完函数），将自己那一份儿活儿的结果传给Reducer。Reducer之后统计汇总各个Mapper传过来的结果，得到最后的任务的答案。当然，这是最简单的表述，因为实际上Master的任务分配过程是很复杂的，会考虑任务时间？任务是否出错？网络通讯负担等等等等许多问题. 假设原始任务的Input个数为M,output个数为N。Mapper的个数为P，Reducer的个数为R。则有关系，M〉P〉N〉R。也就是说，一个Mapper要做M/P个input的处理任务，一个Reducer要做N/R个output的汇总工作。同时Mapper对数据进行分类，输出键值对值的集合（key就是类别）。这样Reducer拿到的都是同类数据处理也较方便。<br> 拿张图解释：<img src="http://i4.buimg.com/588926/9f8bcfac5e8e9646.png" alt="此处输入图片的描述"></p>
+        <hr>
+<h2 id="Model-Representation"><a href="#Model-Representation" class="headerlink" title="Model Representation"></a>Model Representation</h2><p>神经网络模型是许多逻辑单元(Logistics Unit)按照不同的层级组织起来的网络，每一层的输出变量作为下一层的输入变量。如下图，是一个三层的神经网络，第一层为输入层(Input Layer)，最后一层为输出层(Output Layer)，中间的一层为隐藏层(Hidden Layer)。我们为每一层都增加一个偏倚单位(Bias Unit【值永远为1】)<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkeqgyaa2wj30wi0ka4aw.jpg" alt="此处输入图片的描述"><br><img src="http://ww3.sinaimg.cn/large/0060lm7Tly1fkeqitakp0j312o07odoy.jpg" alt="此处输入图片的描述"><br><img src="http://ww3.sinaimg.cn/large/0060lm7Tly1fkeqk6w9yoj30v208stcv.jpg" alt="此处输入图片的描述"><br><strong>*注：<br>①上述权重矩阵的大小为行是j+1层的激活单元数，列是j层的+1（有一个偏移单元）<br>②h和g函数采用sigmoid函数，函数的形式见下</strong><br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkeqzqe0soj30ny0bodl4.jpg" alt="此处输入图片的描述"></p>
+<h3 id="正向传播（Forward-Propagation）"><a href="#正向传播（Forward-Propagation）" class="headerlink" title="正向传播（Forward Propagation）"></a>正向传播（Forward Propagation）</h3><p>对于上面的式子，重新改写一下第二层的计算：<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkflo7da8hj314g0v4n6k.jpg" alt="此处输入图片的描述"><br>所以不难发现：<br><img src="http://ww3.sinaimg.cn/large/0060lm7Tly1fkfl0cq5hyj30c602kdfs.jpg" alt="此处输入图片的描述"><br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkfl0crrmcj30cc026mx4.jpg" alt="此处输入图片的描述"><br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fkfl0crxo0j30hu02c74b.jpg" alt="此处输入图片的描述"></p>
+<h2 id="NN-Learning"><a href="#NN-Learning" class="headerlink" title="NN Learning"></a>NN Learning</h2><h3 id="Cost-Function"><a href="#Cost-Function" class="headerlink" title="Cost Function"></a>Cost Function</h3><p><img src="http://ww3.sinaimg.cn/large/0060lm7Tly1fkgmuouzu0j311k052q41.jpg" alt="此处输入图片的描述"><br>*注：这里的K是结果分类类别的数量</p>
+<h3 id="反向传播————最小化代价函数"><a href="#反向传播————最小化代价函数" class="headerlink" title="反向传播————最小化代价函数"></a>反向传播————最小化代价函数</h3><p>1）主要思想是先计算最后一层的误差，然后一层层的反向求出各层的误差（至倒数第二层）<br>2）式子<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkgp3cxh7aj30no0hw76m.jpg" alt="此处输入图片的描述"><br><img src="http://ww3.sinaimg.cn/large/0060lm7Tly1fkgp3cxf1sj30ci05ujrx.jpg" alt="此处输入图片的描述"><br>最后利用这些计算出来的偏导数就可以按以前的梯度下降法或别的方法来进行计算了</p>
+<h3 id="Unrolling-Parameters"><a href="#Unrolling-Parameters" class="headerlink" title="Unrolling Parameters"></a>Unrolling Parameters</h3><p>把矩阵换为向量传递<br>例子：<br><img src="http://ww3.sinaimg.cn/large/0060lm7Tly1fkjb9acdxdj30oo0buacw.jpg" alt="此处输入图片的描述"></p>
+<h2 id="Training的步骤"><a href="#Training的步骤" class="headerlink" title="Training的步骤"></a>Training的步骤</h2><p><img src="http://ww1.sinaimg.cn/large/0060lm7Tly1fkjcro66vlj30zw0b4gq7.jpg" alt="此处输入图片的描述"><br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fkjcxrpxfyj31880g8n8w.jpg" alt="此处输入图片的描述"><br>注：①初始权重一般设成接近0的很小值</p>
 
       
     </div>
@@ -403,7 +422,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MapReduce/" rel="tag"># MapReduce</a>
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
           
         </div>
       
@@ -412,18 +433,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/24/在mac上安装和配置Hadoop/" rel="next" title="在mac上安装和配置Hadoop">
-                <i class="fa fa-chevron-left"></i> 在mac上安装和配置Hadoop
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/09/关于mac -bash- hexo- command not found的解决/" rel="prev" title="关于mac -bash- hexo- command not found的解决">
-                关于mac -bash- hexo- command not found的解决 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/11/机器学习related(2) ———— LDA/" rel="prev" title="机器学习related(2) ———— LDA">
+                机器学习related(2) ———— LDA <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -450,8 +467,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/05/17/MapReduce学习笔记/"
-           data-title="MapReduce学习笔记" data-url="http://oppalu.github.io/2017/05/17/MapReduce学习笔记/">
+      <div class="ds-thread" data-thread-key="2017/10/15/机器学习related(3) ———— 神经网络/"
+           data-title="机器学习related(3) ———— 神经网络" data-url="http://oppalu.github.io/2017/10/15/机器学习related(3) ———— 神经网络/">
       </div>
     
   </div>
@@ -475,8 +492,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -558,6 +584,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Representation"><span class="nav-number">1.</span> <span class="nav-text">Model Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正向传播（Forward-Propagation）"><span class="nav-number">1.1.</span> <span class="nav-text">正向传播（Forward Propagation）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NN-Learning"><span class="nav-number">2.</span> <span class="nav-text">NN Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-Function"><span class="nav-number">2.1.</span> <span class="nav-text">Cost Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向传播————最小化代价函数"><span class="nav-number">2.2.</span> <span class="nav-text">反向传播————最小化代价函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unrolling-Parameters"><span class="nav-number">2.3.</span> <span class="nav-text">Unrolling Parameters</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training的步骤"><span class="nav-number">3.</span> <span class="nav-text">Training的步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
