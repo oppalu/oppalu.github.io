@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,LDA," />
+  <meta name="keywords" content="JAVA集合," />
 
 
 
@@ -84,25 +84,21 @@
 
 
 
-<meta name="description" content="基本思想输入分词后的文章集（一篇文章一行，是一个词袋）和主题数K，输出每篇文章的每个词的主题编号、每篇文章的主题概率分布、每个主题下词的概率分布等 LDA相关的前置知识二项分布C(n,k)p^k(1-p)^(n-k) 多项分布 Beta分布————二项分布的共轭先验分布期望是a/a+b dirichlet分布 gamma函数（阶乘在实数范围的扩展） 定义 性质  共轭先验分布先验概率，就是常识、">
-<meta name="keywords" content="机器学习,LDA">
+<meta name="description" content="概述下面两张图所示是JAVA的集合框架图，从整体上可以发现JAVA容器主要包括了Collection和Map两种。List， Queue和Set集合共同继承Collection这个父接口，Map集合是单独的一个接口。 Collection ListList的每一个位置按照索引位置摆放，像一个柜子一层一层的，可以有重复的元素(根据索引找元素) ArrayList：基于动态数组实现,支持随机访问。">
+<meta name="keywords" content="JAVA集合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习related(2) ———— LDA">
-<meta property="og:url" content="http://oppalu.github.io/2017/10/11/机器学习related(2) ———— LDA/index.html">
+<meta property="og:title" content="JAVA集合相关整理">
+<meta property="og:url" content="http://oppalu.github.io/2019/02/03/JAVA集合相关整理/index.html">
 <meta property="og:site_name" content="Phoebe's blog">
-<meta property="og:description" content="基本思想输入分词后的文章集（一篇文章一行，是一个词袋）和主题数K，输出每篇文章的每个词的主题编号、每篇文章的主题概率分布、每个主题下词的概率分布等 LDA相关的前置知识二项分布C(n,k)p^k(1-p)^(n-k) 多项分布 Beta分布————二项分布的共轭先验分布期望是a/a+b dirichlet分布 gamma函数（阶乘在实数范围的扩展） 定义 性质  共轭先验分布先验概率，就是常识、">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeimedsgwj31be09cgnz.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeio09ov4j30os07u75t.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkdi06zm83j30pg05wdi9.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/0060lm7Tly1fkeipcgvioj30q608kdh8.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/0060lm7Tly1fkdhpany7cj30cq03gjrj.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkdhq0ynt6j306202g749.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/0060lm7Tly1fkdhq11opij306w02adfu.jpg">
-<meta property="og:updated_time" content="2017-10-11T12:41:03.000Z">
+<meta property="og:description" content="概述下面两张图所示是JAVA的集合框架图，从整体上可以发现JAVA容器主要包括了Collection和Map两种。List， Queue和Set集合共同继承Collection这个父接口，Map集合是单独的一个接口。 Collection ListList的每一个位置按照索引位置摆放，像一个柜子一层一层的，可以有重复的元素(根据索引找元素) ArrayList：基于动态数组实现,支持随机访问。">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full_collection2.png">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full.png">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/49d6de7b-0d0d-425c-9e49-a1559dc23b10.png">
+<meta property="og:updated_time" content="2019-02-03T16:58:09.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习related(2) ———— LDA">
-<meta name="twitter:description" content="基本思想输入分词后的文章集（一篇文章一行，是一个词袋）和主题数K，输出每篇文章的每个词的主题编号、每篇文章的主题概率分布、每个主题下词的概率分布等 LDA相关的前置知识二项分布C(n,k)p^k(1-p)^(n-k) 多项分布 Beta分布————二项分布的共轭先验分布期望是a/a+b dirichlet分布 gamma函数（阶乘在实数范围的扩展） 定义 性质  共轭先验分布先验概率，就是常识、">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeimedsgwj31be09cgnz.jpg">
+<meta name="twitter:title" content="JAVA集合相关整理">
+<meta name="twitter:description" content="概述下面两张图所示是JAVA的集合框架图，从整体上可以发现JAVA容器主要包括了Collection和Map两种。List， Queue和Set集合共同继承Collection这个父接口，Map集合是单独的一个接口。 Collection ListList的每一个位置按照索引位置摆放，像一个柜子一层一层的，可以有重复的元素(根据索引找元素) ArrayList：基于动态数组实现,支持随机访问。">
+<meta name="twitter:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full_collection2.png">
 
 
 
@@ -130,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://oppalu.github.io/2017/10/11/机器学习related(2) ———— LDA/"/>
+  <link rel="canonical" href="http://oppalu.github.io/2019/02/03/JAVA集合相关整理/"/>
 
 
 
 
 
-  <title> 机器学习related(2) ———— LDA | Phoebe's blog </title>
+  <title> JAVA集合相关整理 | Phoebe's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -287,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2017/10/11/机器学习related(2) ———— LDA/">
+  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2019/02/03/JAVA集合相关整理/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Phoebe">
@@ -311,7 +307,7 @@
             
             
               
-                机器学习related(2) ———— LDA
+                JAVA集合相关整理
               
             
           </h1>
@@ -324,8 +320,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-11T20:39:40+08:00">
-                2017-10-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-03T23:34:07+08:00">
+                2019-02-03
               </time>
             
 
@@ -343,8 +339,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/JAVA/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA</span>
                   </a>
                 </span>
 
@@ -358,8 +354,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/10/11/机器学习related(2) ———— LDA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/11/机器学习related(2) ———— LDA/" itemprop="commentCount"></span>
+                <a href="/2019/02/03/JAVA集合相关整理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/02/03/JAVA集合相关整理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -386,24 +382,62 @@
 
       
         <hr>
-<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>输入分词后的文章集（一篇文章一行，是一个词袋）和主题数K，输出每篇文章的每个词的主题编号、每篇文章的主题概率分布、每个主题下词的概率分布等</p>
-<h2 id="LDA相关的前置知识"><a href="#LDA相关的前置知识" class="headerlink" title="LDA相关的前置知识"></a>LDA相关的前置知识</h2><h3 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h3><p>C(n,k)<em>p^k</em>(1-p)^(n-k)</p>
-<h3 id="多项分布"><a href="#多项分布" class="headerlink" title="多项分布"></a>多项分布</h3><p><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeimedsgwj31be09cgnz.jpg" alt="此处输入图片的描述"></p>
-<h3 id="Beta分布————二项分布的共轭先验分布"><a href="#Beta分布————二项分布的共轭先验分布" class="headerlink" title="Beta分布————二项分布的共轭先验分布"></a>Beta分布————二项分布的共轭先验分布</h3><p>期望是a/a+b<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fkeio09ov4j30os07u75t.jpg" alt="此处输入图片的描述"><br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1fkdi06zm83j30pg05wdi9.jpg" alt="此处输入图片的描述"></p>
-<h3 id="dirichlet分布"><a href="#dirichlet分布" class="headerlink" title="dirichlet分布"></a>dirichlet分布</h3><p><img src="http://ww1.sinaimg.cn/large/0060lm7Tly1fkeipcgvioj30q608kdh8.jpg" alt="此处输入图片的描述"></p>
-<h3 id="gamma函数（阶乘在实数范围的扩展）"><a href="#gamma函数（阶乘在实数范围的扩展）" class="headerlink" title="gamma函数（阶乘在实数范围的扩展）"></a>gamma函数（阶乘在实数范围的扩展）</h3><ol>
-<li>定义<br><img src="http://ww1.sinaimg.cn/large/0060lm7Tly1fkdhpany7cj30cq03gjrj.jpg" alt="此处输入图片的描述"></li>
-<li>性质<br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkdhq0ynt6j306202g749.jpg" alt="此处输入图片的描述"><br><img src="http://ww2.sinaimg.cn/large/0060lm7Tly1fkdhq11opij306w02adfu.jpg" alt="此处输入图片的描述"></li>
-</ol>
-<h3 id="共轭先验分布"><a href="#共轭先验分布" class="headerlink" title="共轭先验分布"></a>共轭先验分布</h3><p>先验概率，就是常识、经验所透露出的“因”的概率，后验概率就是在知道“果”之后，去推测“因”的概率。<br>如果后验概率P(θ|x)和先验概率p(θ)满足同样的分布律，那么，先验分布和后验分布被叫做共轭分布，同时，先验分布叫做似然函数的共轭先验分布</p>
-<h2 id="LDA的生成过程"><a href="#LDA的生成过程" class="headerlink" title="LDA的生成过程"></a>LDA的生成过程</h2><p>1.对每一篇文档，从主题分布中抽取一个主题；<br>2.从上述被抽到的主题所对应的单词分布中抽取一个单词；<br>3.重复上述过程直至遍历文档中的每一个单词。</p>
-<h2 id="LDA整体流程"><a href="#LDA整体流程" class="headerlink" title="LDA整体流程"></a>LDA整体流程</h2><p>文档集合D中每个文档d看作一个单词序列<w1,w2,...,wn>，wi表示第i个单词，设d有n个单词。<br>D中涉及的所有不同单词组成一个大集合VOCABULARY（简称VOC），LDA以文档集合D作为输入，希望训练出的两个结果向量（设聚成k个topic，VOC中共包含m个词）：<br>①对每个D中的文档d，对应到不同Topic的概率θd(pt1,…,ptk)，其中，pti表示d对应T中第i个topic的概率。pti=nti/n，其中nti表示d中对应第i个topic的词的数目，n是d中所有词的总数。<br>②对每个T中的topic t，生成不同单词的概率φt(pw1,…,pwm)，其中，pwi表示t生成VOC中第i个单词的概率。pwi=Nwi/N，其中Nwi表示对应到topict的VOC中第i个单词的数目，N表示所有对应到topict的单词总数。<br>LDA的核心公式如下：<br>p(w|d)=p(w|t)<em>p(t|d)<br>直观的看这个公式，<em>*就是可以通过当前的θd和φt给出了文档d中出现单词w的概率</em></em>。其中p(t|d)利用θd计算得到，p(w|t)利用φt计算得到。</w1,w2,...,wn></p>
-<h2 id="LDA的学习过程"><a href="#LDA的学习过程" class="headerlink" title="LDA的学习过程"></a>LDA的学习过程</h2><p>LDA算法开始时，先随机地给θd和φt赋值（对所有的d和t）。然后不断重复下面的迭代的学习过程：</p>
-<ol>
-<li>针对一个特定的文档ds中的第i单词wi，如果令该单词对应的topic为tj，可以把上述公式改写为：pj(wi|ds)=p(wi|tj)*p(tj|ds)</li>
-<li>枚举T中的topic，得到所有的pj(wi|ds)，其中j取值1~k。然后可以根据这些概率值结果为ds中的第i个单词wi选择一个topic。最简单的想法是取令pj(wi|ds)最大的tj</li>
-<li>如果ds中的第i个单词wi在这里选择了一个与原先不同的topic，就会对θd和φt有影响了。它们的影响又会反过来影响对上面提到的p(w|d)的计算。对D中所有的d中的所有w进行一次p(w|d)的计算并重新选择topic看作一次迭代。这样进行n次循环迭代之后，就会收敛到LDA所需要的结果了。</li>
-</ol>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>下面两张图所示是JAVA的集合框架图，从整体上可以发现JAVA容器主要包括了Collection和Map两种。List， Queue和Set集合共同继承Collection这个父接口，Map集合是单独的一个接口。<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full_collection2.png" alt="完整框架图"><br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full.png" alt="完整框架图2"></p>
+<h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><ul>
+<li>List<br>List的每一个位置按照索引位置摆放，像一个柜子一层一层的，可以有重复的元素(根据索引找元素)<ul>
+<li>ArrayList：基于动态数组实现,支持随机访问。</li>
+<li>Vector：和ArrayList类似，但它是线程安全的。(<strong>开销也比 ArrayList 要大，访问速度更慢，因此要避免使用</strong>)</li>
+<li>LinkedList：基于双向链表实现，只能顺序访问，但是可以<strong>快速地在链表任何位置</strong>插入和删除元素。此外，LinkedList 还可以用作栈、队列和双向队列。</li>
+</ul>
+</li>
+<li>Set<br>Set的每个元素不按顺序进行排序，无序不重复<ul>
+<li>HashSet：基于哈希表实现，是无序的，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的</li>
+<li>TreeSet：基于红黑树实现，是有序的，但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。</li>
+<li>LinkedHashSet：具有 HashSet 的查找效率，且内部使用双向链表维护元素的插入顺序。</li>
+</ul>
+</li>
+<li>Queue<ul>
+<li>PriorityQueue：基于堆结构实现，可用它来实现优先队列。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>Map中的每一个元素都是按照键值对的方式存储，一个键对应一个值，键不可以重复，值可以重复，我们可以根据键找到值，也是无序的集合。</p>
+<ul>
+<li>HashMap基于哈希表实现，对键进行散列，较快</li>
+<li>TreeMap基于红黑树实现，用键的整体顺序对元素进行排序，将其组织成搜索树</li>
+<li>HashTable与HashMap类似，区别在于HashMap线程不安全，键最多一个为null值可以为多个null。而HashTable线程安全，键与值都不能为null。（它是遗留类，不应该去使用它。现在可以使用 ConcurrentHashMap 来支持线程安全）</li>
+<li>LinkedHashMap：使用双向链表来维护元素的顺序，顺序为插入顺序或者最近最少使用（LRU）顺序。</li>
+</ul>
+<h2 id="源码简单分析"><a href="#源码简单分析" class="headerlink" title="源码简单分析"></a>源码简单分析</h2><h3 id="ArrayList（基于数组实现）"><a href="#ArrayList（基于数组实现）" class="headerlink" title="ArrayList（基于数组实现）"></a>ArrayList（基于数组实现）</h3><ul>
+<li>默认大小为10，当容量不够需要扩容时为原来的1.5倍。扩容操作需要调用 Arrays.copyOf()把原数组整个复制到新数组中，这个操作代价很高，因此最好在创建 ArrayList 对象时就指定大概的容量大小，减少扩容操作的次数。</li>
+<li>由于基于数组实现，删除元素时复杂度为O(N)</li>
+<li>Fail-fast：<strong>当多个线程对同一个集合的内容进行操作时，就可能会产生fail-fast事件</strong>。ArrayList使用一个变量modCount来记录结构发生变化的次数(即添加/删除元素时)，在进行序列化或者迭代等操作时，需要比较操作前后modCount是否改变，如果改变了需要抛出ConcurrentModificationException异常。</li>
+</ul>
+<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><ul>
+<li>实现与ArrayList类似，但是使用了<strong>synchronized</strong>进行同步。</li>
+<li>每次扩容请求其大小的 2 倍空间</li>
+<li>由于效率较低，如果需要同步可以使用Collections.synchronizedList()得到一个线程安全的 ArrayList。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = new ArrayList&lt;&gt;();</div><div class="line">List&lt;String&gt; synList = Collections.synchronizedList(list);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="LinkedList-基于双向链表实现"><a href="#LinkedList-基于双向链表实现" class="headerlink" title="LinkedList(基于双向链表实现)"></a>LinkedList(基于双向链表实现)</h3><ul>
+<li>内部节点Node定义了前指针prev和后指针next<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">private static class Node&lt;E&gt; &#123;</div><div class="line">    E item;</div><div class="line">    Node&lt;E&gt; next;</div><div class="line">    Node&lt;E&gt; prev;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/49d6de7b-0d0d-425c-9e49-a1559dc23b10.png" alt="此处输入图片的描述"></p>
+<ul>
+<li>Java定义了一个叫Entry的结构用来存储键值对。它是一个链表，包含了key, value, hashCode, next指针四个字段</li>
+<li>Java定义了一个Entry类型的数组table。他的每个位置是一个桶，一个桶存放了一个Entry链表，同一个链表中存放哈希值相同的 Entry。</li>
+<li>当插入一个<k,v>键值对时，先计算K的hashcode，<strong>使用除留余数法得到所在的桶下标</strong>(如hashCode为115，HashMap大小为16，则得到桶的下标为115%16=3)。</k,v></li>
+<li>当查找时，先根据hashCode计算键值对所在的桶，然后在对应的链表上顺序查找，时间复杂度和链表的长度成正比。</li>
+<li>HashMap 允许插入键为 null 的键值对。但是因为无法调用 null 的 hashCode() 方法，也就无法确定该键值对的桶下标，因此使用第 0 个桶存放键为 null 的键值对。</li>
+</ul>
+<h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>与HashMap类似，使用 synchronized 来进行同步,可以插入键为 null 的 Entry。</p>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><ul>
+<li>和 HashMap 实现上类似，差别在于 ConcurrentHashMap 采用了分段锁（Segment），每个分段锁维护着几个桶（HashEntry），多个线程可以同时访问不同分段锁上的桶，从而使其并发度更高。</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>HashSet是通过HashMap来实现的而TreeSet是通过TreeMap来实现的，因此这里不过多介绍</p>
+<hr>
+<p>PS：在学习的过程中，参考了许多博客，这里对他们表示感谢！<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20%E5%AE%B9%E5%99%A8.md" target="_blank" rel="external">https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20%E5%AE%B9%E5%99%A8.md</a></p>
 
       
     </div>
@@ -427,9 +461,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
-          
-            <a href="/tags/LDA/" rel="tag"># LDA</a>
+            <a href="/tags/JAVA集合/" rel="tag"># JAVA集合</a>
           
         </div>
       
@@ -438,18 +470,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/15/机器学习related(3) ———— 神经网络/" rel="next" title="机器学习related(3) ———— 神经网络">
-                <i class="fa fa-chevron-left"></i> 机器学习related(3) ———— 神经网络
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/10/机器学习related(1)/" rel="prev" title="机器学习related(1)">
-                机器学习related(1) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/01/动态规划学习笔记（一）/" rel="prev" title="动态规划学习笔记（一）">
+                动态规划学习笔记（一） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -476,8 +504,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/10/11/机器学习related(2) ———— LDA/"
-           data-title="机器学习related(2) ———— LDA" data-url="http://oppalu.github.io/2017/10/11/机器学习related(2) ———— LDA/">
+      <div class="ds-thread" data-thread-key="2019/02/03/JAVA集合相关整理/"
+           data-title="JAVA集合相关整理" data-url="http://oppalu.github.io/2019/02/03/JAVA集合相关整理/">
       </div>
     
   </div>
@@ -603,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思想"><span class="nav-number">1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDA相关的前置知识"><span class="nav-number">2.</span> <span class="nav-text">LDA相关的前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二项分布"><span class="nav-number">2.1.</span> <span class="nav-text">二项分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项分布"><span class="nav-number">2.2.</span> <span class="nav-text">多项分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Beta分布————二项分布的共轭先验分布"><span class="nav-number">2.3.</span> <span class="nav-text">Beta分布————二项分布的共轭先验分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dirichlet分布"><span class="nav-number">2.4.</span> <span class="nav-text">dirichlet分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gamma函数（阶乘在实数范围的扩展）"><span class="nav-number">2.5.</span> <span class="nav-text">gamma函数（阶乘在实数范围的扩展）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共轭先验分布"><span class="nav-number">2.6.</span> <span class="nav-text">共轭先验分布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDA的生成过程"><span class="nav-number">3.</span> <span class="nav-text">LDA的生成过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDA整体流程"><span class="nav-number">4.</span> <span class="nav-text">LDA整体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LDA的学习过程"><span class="nav-number">5.</span> <span class="nav-text">LDA的学习过程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">1.1.</span> <span class="nav-text">Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.2.</span> <span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码简单分析"><span class="nav-number">2.</span> <span class="nav-text">源码简单分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList（基于数组实现）"><span class="nav-number">2.1.</span> <span class="nav-text">ArrayList（基于数组实现）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector"><span class="nav-number">2.2.</span> <span class="nav-text">Vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList-基于双向链表实现"><span class="nav-number">2.3.</span> <span class="nav-text">LinkedList(基于双向链表实现)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">2.4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable"><span class="nav-number">2.5.</span> <span class="nav-text">HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">2.6.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">2.7.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
             
 
           </div>

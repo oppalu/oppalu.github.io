@@ -91,12 +91,10 @@
 <meta property="og:url" content="http://oppalu.github.io/2017/04/09/关于mac -bash- hexo- command not found的解决/index.html">
 <meta property="og:site_name" content="Phoebe's blog">
 <meta property="og:description" content="好久没写博客了，今天提交一下发现突然报了错：-bash: hexo: command not found。这时候就比较懵逼了，然后想了想会不会是环境变量没有配好的原因，结果去查了一下也没有找到网上说的路径下有hexo-cli文件夹，这时候就开始怀疑是不是自己以前安装的时候没有装成全局-g的。。。于是可以考虑重新装，使用npm install -g hexo-cli,这个时候你可能会遇到如下的报错信">
-<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/IMG_7169.JPG">
-<meta property="og:updated_time" content="2019-02-01T14:51:52.528Z">
+<meta property="og:updated_time" content="2019-02-01T14:56:05.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于mac -bash- hexo- command not found的解决">
 <meta name="twitter:description" content="好久没写博客了，今天提交一下发现突然报了错：-bash: hexo: command not found。这时候就比较懵逼了，然后想了想会不会是环境变量没有配好的原因，结果去查了一下也没有找到网上说的路径下有hexo-cli文件夹，这时候就开始怀疑是不是自己以前安装的时候没有装成全局-g的。。。于是可以考虑重新装，使用npm install -g hexo-cli,这个时候你可能会遇到如下的报错信">
-<meta name="twitter:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/IMG_7169.JPG">
 
 
 
@@ -382,7 +380,6 @@
         <p>好久没写博客了，今天提交一下发现突然报了错：-bash: hexo: command not found。这时候就比较懵逼了，然后想了想会不会是环境变量没有配好的原因，结果去查了一下也没有找到网上说的路径下有hexo-cli文件夹，这时候就开始怀疑是不是自己以前安装的时候没有装成全局-g的。。。<br>于是可以考虑重新装，使用npm install -g hexo-cli,这个时候你可能会遇到如下的报错信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">npm ERR! tar.unpack untar error /Users/aprildove/.npm/hexo/3.2.2/package.tgz</div><div class="line">npm ERR! Darwin 15.3.0</div><div class="line">npm ERR! argv &quot;/usr/local/bin/node&quot; &quot;/usr/local/bin/npm&quot; &quot;install&quot; &quot;hexo&quot; &quot;-g&quot;</div><div class="line">npm ERR! node v4.4.5</div><div class="line">npm ERR! npm  v2.15.5</div><div class="line">npm ERR! path /usr/local/lib/node_modules/hexo</div><div class="line">npm ERR! code EACCES</div><div class="line">npm ERR! errno -13</div><div class="line">npm ERR! syscall mkdir</div><div class="line"></div><div class="line">npm ERR! Error: EACCES: permission denied, mkdir &apos;/usr/local/lib/node_modules/hexo&apos;</div><div class="line">npm ERR!     at Error (native)</div><div class="line">npm ERR!  &#123; [Error: EACCES: permission denied, mkdir &apos;/usr/local/lib/node_modules/hexo&apos;]</div><div class="line">npm ERR!   errno: -13,</div><div class="line">npm ERR!   code: &apos;EACCES&apos;,</div><div class="line">npm ERR!   syscall: &apos;mkdir&apos;,</div><div class="line">npm ERR!   path: &apos;/usr/local/lib/node_modules/hexo&apos;,</div><div class="line">npm ERR!   fstream_type: &apos;Directory&apos;,</div><div class="line">npm ERR!   fstream_path: &apos;/usr/local/lib/node_modules/hexo&apos;,</div><div class="line">npm ERR!   fstream_class: &apos;DirWriter&apos;,</div><div class="line">npm ERR!   fstream_stack: </div><div class="line">npm ERR!    [ &apos;/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25&apos;,</div><div class="line">npm ERR!      &apos;/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53&apos;,</div><div class="line">npm ERR!      &apos;FSReqWrap.oncomplete (fs.js:82:15)&apos; ] &#125;</div><div class="line">npm ERR! </div><div class="line">npm ERR! Please try running this command again as root/Administrator.</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:</div><div class="line">npm ERR!     /Users/aprildove/Workspace/github/npm-debug.log</div></pre></td></tr></table></figure></p>
 <p>这个是因为权限不够，加上sudo执行应该就没有问题了。。。然后安装成功后就可以愉快的hexo g和hexo d了<br>为了防止之后可能还有问题可以在环境变量的配置文件中将hexo的环境变量路径加入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//使用这句打开配置文件</div><div class="line">sudo vi ~/.bash_profile</div></pre></td></tr></table></figure></p>
 <p>在后面加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/lib/node_modules/hexo-cli/bin</div></pre></td></tr></table></figure></p>
-<p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/IMG_7169.JPG" alt="此处输入图片的描述"></p>
 
       
     </div>
@@ -492,7 +489,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,7 +497,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -509,7 +506,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
