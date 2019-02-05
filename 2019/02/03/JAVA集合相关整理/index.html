@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full_collection2.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/49d6de7b-0d0d-425c-9e49-a1559dc23b10.png">
-<meta property="og:updated_time" content="2019-02-03T16:58:09.809Z">
+<meta property="og:updated_time" content="2019-02-04T14:42:41.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA集合相关整理">
 <meta name="twitter:description" content="概述下面两张图所示是JAVA的集合框架图，从整体上可以发现JAVA容器主要包括了Collection和Map两种。List， Queue和Set集合共同继承Collection这个父接口，Map集合是单独的一个接口。 Collection ListList的每一个位置按照索引位置摆放，像一个柜子一层一层的，可以有重复的元素(根据索引找元素) ArrayList：基于动态数组实现,支持随机访问。">
@@ -423,7 +423,7 @@
 <li>内部节点Node定义了前指针prev和后指针next<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">private static class Node&lt;E&gt; &#123;</div><div class="line">    E item;</div><div class="line">    Node&lt;E&gt; next;</div><div class="line">    Node&lt;E&gt; prev;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/49d6de7b-0d0d-425c-9e49-a1559dc23b10.png" alt="此处输入图片的描述"></p>
+<h3 id="HashMap-链表-数组"><a href="#HashMap-链表-数组" class="headerlink" title="HashMap(链表+数组)"></a>HashMap(链表+数组)</h3><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/49d6de7b-0d0d-425c-9e49-a1559dc23b10.png" alt="此处输入图片的描述"></p>
 <ul>
 <li>Java定义了一个叫Entry的结构用来存储键值对。它是一个链表，包含了key, value, hashCode, next指针四个字段</li>
 <li>Java定义了一个Entry类型的数组table。他的每个位置是一个桶，一个桶存放了一个Entry链表，同一个链表中存放哈希值相同的 Entry。</li>
@@ -431,7 +431,7 @@
 <li>当查找时，先根据hashCode计算键值对所在的桶，然后在对应的链表上顺序查找，时间复杂度和链表的长度成正比。</li>
 <li>HashMap 允许插入键为 null 的键值对。但是因为无法调用 null 的 hashCode() 方法，也就无法确定该键值对的桶下标，因此使用第 0 个桶存放键为 null 的键值对。</li>
 </ul>
-<h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>与HashMap类似，使用 synchronized 来进行同步,可以插入键为 null 的 Entry。</p>
+<h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>与HashMap类似，使用 synchronized 来进行同步,可以插入键为 null 的 Entry。<br>不建议在新代码中使用，不需要线程安全的场合可以用HashMap替换，需要线程安全的场合可以用ConcurrentHashMap替换。(HashTable 使用一把锁（锁住整个链表结构）处理并发问题，多个线程竞争一把锁，容易阻塞)</p>
 <h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><ul>
 <li>和 HashMap 实现上类似，差别在于 ConcurrentHashMap 采用了分段锁（Segment），每个分段锁维护着几个桶（HashEntry），多个线程可以同时访问不同分段锁上的桶，从而使其并发度更高。</li>
 </ul>
@@ -470,14 +470,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/02/05/JVM学习笔记-1-——内存区域/" rel="next" title="JVM学习笔记(1)——内存区域">
+                <i class="fa fa-chevron-left"></i> JVM学习笔记(1)——内存区域
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/01/动态规划学习笔记（一）/" rel="prev" title="动态规划学习笔记（一）">
-                动态规划学习笔记（一） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/15/机器学习related(3) ———— 神经网络/" rel="prev" title="机器学习related(3) ———— 神经网络">
+                机器学习related(3) ———— 神经网络 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -558,7 +562,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -631,7 +635,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">1.1.</span> <span class="nav-text">Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.2.</span> <span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码简单分析"><span class="nav-number">2.</span> <span class="nav-text">源码简单分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList（基于数组实现）"><span class="nav-number">2.1.</span> <span class="nav-text">ArrayList（基于数组实现）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector"><span class="nav-number">2.2.</span> <span class="nav-text">Vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList-基于双向链表实现"><span class="nav-number">2.3.</span> <span class="nav-text">LinkedList(基于双向链表实现)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">2.4.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable"><span class="nav-number">2.5.</span> <span class="nav-text">HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">2.6.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">2.7.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">1.1.</span> <span class="nav-text">Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.2.</span> <span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码简单分析"><span class="nav-number">2.</span> <span class="nav-text">源码简单分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList（基于数组实现）"><span class="nav-number">2.1.</span> <span class="nav-text">ArrayList（基于数组实现）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector"><span class="nav-number">2.2.</span> <span class="nav-text">Vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList-基于双向链表实现"><span class="nav-number">2.3.</span> <span class="nav-text">LinkedList(基于双向链表实现)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-链表-数组"><span class="nav-number">2.4.</span> <span class="nav-text">HashMap(链表+数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable"><span class="nav-number">2.5.</span> <span class="nav-text">HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">2.6.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">2.7.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
             
 
           </div>
