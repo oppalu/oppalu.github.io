@@ -84,13 +84,13 @@
 
 
 
-<meta name="description" content="上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。">
+<meta name="description" content="上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。由于在Java的运行数据区中，程序计数器、虚拟机栈、本地方法栈三个区域都是线程私有的，随线程而生，随线程而灭，在方法结束或线程结束时，内存自然就跟着回收了，不需要过多考虑回收的问题。而Java堆和方法区是共享的，这部分内存的分配和回收都是动态的，垃圾回收器关注的是这部分内">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM学习笔记(2)——垃圾回收机制与内存分配策略">
 <meta property="og:url" content="http://oppalu.github.io/2019/02/06/JVM学习笔记-2-——垃圾回收机制与内存分配策略/index.html">
 <meta property="og:site_name" content="Phoebe's blog">
-<meta property="og:description" content="上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。">
+<meta property="og:description" content="上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。由于在Java的运行数据区中，程序计数器、虚拟机栈、本地方法栈三个区域都是线程私有的，随线程而生，随线程而灭，在方法结束或线程结束时，内存自然就跟着回收了，不需要过多考虑回收的问题。而Java堆和方法区是共享的，这部分内存的分配和回收都是动态的，垃圾回收器关注的是这部分内">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/GC.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/249993-20170308201424313-1417214713.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/249993-20170307205221484-1705867339.png">
@@ -101,10 +101,10 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/81538cd5-1bcf-4e31-86e5-e198df1e013b.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/62e77997-6957-4b68-8d12-bfd609bb2c68.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/f99ee771-c56f-47fb-9148-c0036695b5fe.jpg">
-<meta property="og:updated_time" content="2019-02-06T15:42:11.358Z">
+<meta property="og:updated_time" content="2019-02-07T15:46:46.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM学习笔记(2)——垃圾回收机制与内存分配策略">
-<meta name="twitter:description" content="上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。">
+<meta name="twitter:description" content="上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。由于在Java的运行数据区中，程序计数器、虚拟机栈、本地方法栈三个区域都是线程私有的，随线程而生，随线程而灭，在方法结束或线程结束时，内存自然就跟着回收了，不需要过多考虑回收的问题。而Java堆和方法区是共享的，这部分内存的分配和回收都是动态的，垃圾回收器关注的是这部分内">
 <meta name="twitter:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/GC.png">
 
 
@@ -389,7 +389,7 @@
 
       
         <hr>
-<p>上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。<br><a id="more"></a></p>
+<p>上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。<br>由于在Java的运行数据区中，程序计数器、虚拟机栈、本地方法栈三个区域都是线程私有的，随线程而生，随线程而灭，在方法结束或线程结束时，内存自然就跟着回收了，不需要过多考虑回收的问题。而<strong>Java堆</strong>和<strong>方法区</strong>是共享的，这部分内存的分配和回收都是动态的，垃圾回收器关注的是这部分内存，后续讨论的“内存”分配回收也是指这两者。<br><a id="more"></a></p>
 <h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><h3 id="判断哪些对象应被回收"><a href="#判断哪些对象应被回收" class="headerlink" title="判断哪些对象应被回收"></a>判断哪些对象应被回收</h3><h4 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h4><p><strong>主要思路</strong>：为对象添加一个引用计数器，当对象增加一个引用时计数器加 1，引用失效时计数器减 1。引用计数为 0 的对象可被回收。<br>问题：难以解决对象之间相互循环引用的问题。在两个对象出现循环引用的情况下，引用计数器永远不为 0，导致无法对它们进行回收。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line"></div><div class="line">    public Object instance = null;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Test a = new Test();</div><div class="line">        Test b = new Test();</div><div class="line">        a.instance = b;</div><div class="line">        b.instance = a;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>正因为循环引用的存在，因此Java虚拟机不使用引用计数算法。</p>
 <h4 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h4><p><strong>主要思路</strong>：通过一系列称为“GC Roots”的对象作为起始点，从这些节点向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链（即GC Roots到对象不可达）时，则证明此对象是不可用的。<br>Java中可作为GC Roots的对象包括以下几种：</p>
@@ -516,6 +516,10 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/02/09/JVM学习笔记-3-——JAVA类文件结构/" rel="next" title="JVM学习笔记(3)——JAVA类文件结构">
+                <i class="fa fa-chevron-left"></i> JVM学习笔记(3)——JAVA类文件结构
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -596,7 +600,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
