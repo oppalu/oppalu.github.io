@@ -101,7 +101,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-10%2000.14.50.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/940623-20170403105126253-1455581617.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/940623-20170506114217679-1713365450.png">
-<meta property="og:updated_time" content="2019-02-09T16:24:51.450Z">
+<meta property="og:updated_time" content="2019-02-09T16:26:14.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM学习笔记(3)——JAVA类文件结构">
 <meta name="twitter:description" content="前面大概介绍了JVM的运行时数据区域以及JVM的垃圾回收和内存分配策略，这一篇主要是针对书中第6章内容整理JAVA的类文件结构。Java语言的特点在于跨平台，通过将源文件编译成与操作系统无关的，只有虚拟机能识别并执行的字节码文件，由各个操作系统上的jvm来负责执行，屏蔽了底层具体的操作系统。这一篇主要就是介绍一下这个字节码文件的性质，为之后介绍Java的类加载机制做好预备知识。">
@@ -417,7 +417,7 @@
 <h4 id="方法表集合"><a href="#方法表集合" class="headerlink" title="方法表集合"></a>方法表集合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">00 02			method_count		//&lt;init&gt;  inc</div></pre></td></tr></table></figure>
 <p>class文件中对方法的描述与以前对字段的描述几乎完全一致的方式，唯一的区别就是访问类型不完全一致。方法标志具体见下：<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-02-10%2000.14.50.png" alt="此处输入图片的描述"></p>
 <h4 id="属性表集合"><a href="#属性表集合" class="headerlink" title="属性表集合"></a>属性表集合</h4><p>Class文件、字段表、方法表都可以有自己的属性表集合，用于描述某些场景的专有信息。符合规范的属性表基本结构如下：<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/940623-20170403105126253-1455581617.png" alt="此处输入图片的描述"><br>其中前两个字节为指向常量池中的CONSTANT_Utf8_info类型的属性名称，之后4个字节表示属性值所占用的位数，最后就是具体属性了。</p>
-<p>在具体属性中，列举几个比较重要的，剩下的可自行查阅：</p>
+<p>在具体属性中，列举几个比较重要的，剩下的可自行查阅《深入理解JVM》一书：</p>
 <h5 id="Code属性"><a href="#Code属性" class="headerlink" title="Code属性"></a>Code属性</h5><p>用来存储Java程序方法体中的代码经过编译处理后生成的字节码指令。每个指令是一个u1类型的单字节，共可以表达256条指令。<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/940623-20170506114217679-1713365450.png" alt="此处输入图片的描述"></p>
 <h5 id="Exception属性"><a href="#Exception属性" class="headerlink" title="Exception属性"></a>Exception属性</h5><p>用于列举方法中可能抛出的受查异常</p>
 <h5 id="SourceFile属性"><a href="#SourceFile属性" class="headerlink" title="SourceFile属性"></a>SourceFile属性</h5><p>该属性是一个定长属性，用于记录生成这个Class文件的源码文件名称</p>
@@ -454,6 +454,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/JVM学习笔记-4-——JAVA类加载机制/" rel="next" title="JVM学习笔记(4)——JAVA类加载机制">
+                <i class="fa fa-chevron-left"></i> JVM学习笔记(4)——JAVA类加载机制
+              </a>
             
           </div>
 
@@ -535,7 +539,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

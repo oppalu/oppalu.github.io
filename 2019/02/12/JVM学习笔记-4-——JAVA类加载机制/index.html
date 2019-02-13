@@ -1,0 +1,813 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JVM," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="上一篇介绍了Java class文件的存储格式。在class文件中描述的各种信息最终都需要加载到虚拟机中才能被运行和使用。而虚拟机如何加载这些class文件，class文件进入虚拟机后又会发生什么变化？本篇笔记就会结合《深入理解Java虚拟机》一书的第7章内容作简要的介绍。">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM学习笔记(4)——JAVA类加载机制">
+<meta property="og:url" content="http://oppalu.github.io/2019/02/12/JVM学习笔记-4-——JAVA类加载机制/index.html">
+<meta property="og:site_name" content="Phoebe's blog">
+<meta property="og:description" content="上一篇介绍了Java class文件的存储格式。在class文件中描述的各种信息最终都需要加载到虚拟机中才能被运行和使用。而虚拟机如何加载这些class文件，class文件进入虚拟机后又会发生什么变化？本篇笔记就会结合《深入理解Java虚拟机》一书的第7章内容作简要的介绍。">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/20171113114223880.png">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/class_loader_hierarchy.png">
+<meta property="og:updated_time" content="2019-02-13T07:38:01.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM学习笔记(4)——JAVA类加载机制">
+<meta name="twitter:description" content="上一篇介绍了Java class文件的存储格式。在class文件中描述的各种信息最终都需要加载到虚拟机中才能被运行和使用。而虚拟机如何加载这些class文件，class文件进入虚拟机后又会发生什么变化？本篇笔记就会结合《深入理解Java虚拟机》一书的第7章内容作简要的介绍。">
+<meta name="twitter:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/20171113114223880.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://oppalu.github.io/2019/02/12/JVM学习笔记-4-——JAVA类加载机制/"/>
+
+
+
+
+
+  <title> JVM学习笔记(4)——JAVA类加载机制 | Phoebe's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Phoebe's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">分享一些学习上的心得经验</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'd_ECTHagZyTfch7gNRi6','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2019/02/12/JVM学习笔记-4-——JAVA类加载机制/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Phoebe">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Phoebe's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Phoebe's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JVM学习笔记(4)——JAVA类加载机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-12T20:13:55+08:00">
+                2019-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2019/02/12/JVM学习笔记-4-——JAVA类加载机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/02/12/JVM学习笔记-4-——JAVA类加载机制/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>上一篇介绍了Java class文件的存储格式。在class文件中描述的各种信息最终都需要加载到虚拟机中才能被运行和使用。而虚拟机如何加载这些class文件，class文件进入虚拟机后又会发生什么变化？本篇笔记就会结合《深入理解Java虚拟机》一书的第7章内容作简要的介绍。<br><a id="more"></a></p>
+<h2 id="类的生命周期"><a href="#类的生命周期" class="headerlink" title="类的生命周期"></a>类的生命周期</h2><p>Java中，类是在<strong>运行期间第一次使用时动态加载</strong>的，而不是一次性加载。类的整个生命周期包括：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialization）、使用（Using）和卸载（Unloading）7个阶段。其中验证、准备和解析3个部分统称为连接(Linking)。<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/20171113114223880.png" alt="此处输入图片的描述"><br>加载、验证、准备、初始化和卸载的顺序是确定的，而解析阶段某些情况下可在初始化阶段后再开始(运行时的动态绑定)。</p>
+<h2 id="类初始化的时机"><a href="#类初始化的时机" class="headerlink" title="类初始化的时机"></a>类初始化的时机</h2><h3 id="主动引用"><a href="#主动引用" class="headerlink" title="主动引用"></a>主动引用</h3><p>虚拟机规范中严格规定了<strong>有且只有</strong>下列五种情况必须对类进行初始化（加载、验证、准备都会随之发生）。这5种场景中的行为称为对一个类进行主动引用：</p>
+<ol>
+<li>遇到new、getstatic、putstatic或invokestatic这4条字节码指令时。生成这4条指令的最常见的Java代码场景是：使用new关键字实例化对象的时候，读取或设置一个类的静态字段（被final修饰、已在编译期把结果放入常量池的静态字段除外）的时候，以及调用一个类的静态方法的时候。</li>
+<li>使用java.lang.reflect包的方法对类进行反射调用的时候，如果类没有进行过初始化，则需要先触发其初始化。</li>
+<li>当初始化一个类的时候，如果发现其父类还没有进行过初始化，则需要先触发其父类的初始化。</li>
+<li>当虚拟机启动时，用户需要指定一个要执行的主类（包含main()方法的那个类），虚拟机会先初始化这个主类。</li>
+<li>当使用JDK 1.7动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且该方法句柄所对应的类没有初始化过，则先触发初始化。</li>
+</ol>
+<h3 id="被动引用"><a href="#被动引用" class="headerlink" title="被动引用"></a>被动引用</h3><p>所有<strong>引用类</strong>的方式都<strong>不会</strong>触发初始化，称为被动引用。被动引用的常见例子包括：</p>
+<ul>
+<li><p>通过子类引用父类的静态字段，不会导致子类初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">System.out.println(SubClass.value);  // value 字段在 SuperClass 中定义, SubClass不会初始化</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过数组定义来引用类，不会触发此类的初始化。（该过程会对数组类进行初始化，数组类是一个由虚拟机自动生成的、直接继承自 Object 的子类，其中包含了数组的属性和方法。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SuperClass[] sca = new SuperClass[10];</div></pre></td></tr></table></figure>
+</li>
+<li><p>常量在编译阶段会存入调用类的常量池中，本质上并没有直接引用到定义常量的类，因此不会触发定义常量的类的初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">System.out.println(ConstClass.HELLOWORLD)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h2><h3 id="加载：查找并加载类的二进制数据"><a href="#加载：查找并加载类的二进制数据" class="headerlink" title="加载：查找并加载类的二进制数据"></a>加载：查找并加载类的二进制数据</h3><p>加载阶段，虚拟机需要完成以下三件事：</p>
+<ol>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流。</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时存储结构。</li>
+<li>在内存中生成一个代表这个类的 Class 对象，作为方法区这个类的各种数据的访问入口。</li>
+</ol>
+<p>其中二进制字节流可以从以下方式中获取：</p>
+<ul>
+<li>从 ZIP 包读取，成为 JAR、EAR、WAR 格式的基础。</li>
+<li>从网络中获取，最典型的应用是 Applet。</li>
+<li>运行时计算生成，例如动态代理技术，在 java.lang.reflect.Proxy 使用 ProxyGenerator.generateProxyClass 的代理类的二进制字节流。</li>
+<li>由其他文件生成，例如由 JSP 文件生成对应的 Class 类。</li>
+</ul>
+<h3 id="验证：确保被加载的类的正确性"><a href="#验证：确保被加载的类的正确性" class="headerlink" title="验证：确保被加载的类的正确性"></a>验证：确保被加载的类的正确性</h3><p>验证是连接阶段的第一步，目的是为了确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。<br>验证阶段大致会完成下面4个阶段的检验动作：</p>
+<ol>
+<li>文件格式验证：即验证字节流是否符合Class文件格式规范</li>
+<li>元数据验证：对字节码描述信息进行语义分析，以保证其描述的信息符合Java语言规范的要求(如是否有父类，是否继承了不允许继承的类，是否实现了父类或接口中要求实现的所有方法等)</li>
+<li>字节码验证：最复杂，通过数据流和控制流分析，确定程序语义的合法性和逻辑性。（如跳转指令不会跳到方法体之外，方法体中类型转换有效等）</li>
+<li>符号引用验证：发生在解析阶段，可看做是对类自身以外的信息进行匹配性校验，目的保证解析动作能正常执行，如果无法通过符号引用验证，则会抛出异常。(如访问性级别等)</li>
+</ol>
+<h3 id="准备：为类的静态变量分配内存并初始化"><a href="#准备：为类的静态变量分配内存并初始化" class="headerlink" title="准备：为类的静态变量分配内存并初始化"></a>准备：为类的静态变量分配内存并初始化</h3><p>准备阶段是正式为<strong>类变量</strong>分配并设置类变量初始值的阶段，这些内存都将在方法区中进行分配。<br>实例变量不会在这阶段分配内存，它将会在对象实例化时随着对象一起分配在堆中。<br>这里所说的初始值“通常情况”是<strong>数据类型的零值</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//value在准备阶段过后的初始值为0而不是1,而把value赋值的putstatic指令将在初始化阶段才会被执行。</div><div class="line">public static int value = 1;</div><div class="line"></div><div class="line">//此时准备阶段value赋值为1</div><div class="line">public static final int value = 1;</div></pre></td></tr></table></figure></p>
+<h3 id="解析：把类中的符号引用转换为直接引用"><a href="#解析：把类中的符号引用转换为直接引用" class="headerlink" title="解析：把类中的符号引用转换为直接引用"></a>解析：把类中的符号引用转换为直接引用</h3><p>解析阶段是将常量池的符号引用替换为直接引用的过程。解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符7类符号引用进行。<br>符号引用就是一组符号来描述目标，可以是任何字面量。直接引用是直接指向目标的指针，相对偏移量或是一个能间接定位到目标的句柄。直接引用和虚拟机实现的内存有关，同一个符号引用在不同虚拟机实例上翻译出来的直接引用不尽相同。</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>初始化阶段才真正开始执行类中定义的 Java 程序代码。初始化阶段即虚拟机执行类构造器 &lt; clinit&gt;() 方法的过程。在准备阶段，类变量已经赋过一次系统要求的初始值，而在初始化阶段，根据程序员通过程序制定的主观计划去初始化类变量和其它资源。</p>
+<p>&lt; clinit&gt;() 是由编译器自动收集类中所有类变量的赋值动作和静态语句块中的语句合并产生的，编译器收集的顺序由语句在源文件中出现的顺序决定。特别注意的是，静态语句块只能访问到定义在它之前的类变量，定义在它之后的类变量只能赋值，不能访问。例如以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">    static &#123;</div><div class="line">        i = 0;                // 给变量赋值可以正常编译通过</div><div class="line">        System.out.print(i);  // 这句编译器会提示“非法向前引用”</div><div class="line">    &#125;</div><div class="line">    static int i = 1;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>由于父类的 &lt; clinit&gt;() 方法先执行，也就意味着父类中定义的静态语句块的执行要优先于子类。例如以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">static class Parent &#123;</div><div class="line">    public static int A = 1;</div><div class="line">    static &#123;</div><div class="line">        A = 2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">static class Sub extends Parent &#123;</div><div class="line">    public static int B = A;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public static void main(String[] args) &#123;</div><div class="line">     System.out.println(Sub.B);  // 2</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>&lt; clinit&gt;() 方法不是必须的，如果没有静态语句块和赋值操作就可以没有。</p>
+<p>接口中不可以使用静态语句块，但仍然有类变量初始化的赋值操作，因此接口与类一样都会生成 &lt; clinit&gt;() 方法。但接口与类不同的是，执行接口的 &lt; clinit&gt;() 方法不需要先执行父接口的 &lt; clinit&gt;() 方法。</p>
+<p>虚拟机会保证一个类的 &lt; clinit&gt;() 方法在多线程环境下被正确的加锁和同步，如果多个线程同时初始化一个类，只会有一个线程执行这个类的 <clinit>() 方法，其它线程都会阻塞等待，直到活动线程执行 <clinit>() 方法完毕。</clinit></clinit></p>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>比较两个类相等，只有在这两个类使用同一个类加载器进行加载的前提下才有意义。这是因为每一个类加载器都拥有一个独立的类名称空间。</p>
+<h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><p>类加载有三种方式：</p>
+<ol>
+<li>命令行启动应用时候由JVM初始化加载</li>
+<li>通过Class.forName()方法动态加载</li>
+<li>通过ClassLoader.loadClass()方法动态加载</li>
+</ol>
+<h3 id="类加载器种类"><a href="#类加载器种类" class="headerlink" title="类加载器种类"></a>类加载器种类</h3><p>从JVM角度，只存在两种不同的类加载器：启动类加载器和其他的。细分可如下：</p>
+<h4 id="启动类加载器-Bootstrap-ClassLoader"><a href="#启动类加载器-Bootstrap-ClassLoader" class="headerlink" title="启动类加载器(Bootstrap ClassLoader)"></a>启动类加载器(Bootstrap ClassLoader)</h4><p>使用 C++ 实现，是虚拟机自身的一部分<br>负责将存放在 &lt; JRE_HOME &gt;\lib 目录中的，或者被 -Xbootclasspath 参数所指定的路径中的，并且是虚拟机识别的（仅按照文件名识别，如 rt.jar，名字不符合的类库即使放在 lib 目录中也不会被加载）类库加载到虚拟机内存中。<br>启动类加载器无法被 Java 程序直接引用，用户在编写自定义类加载器时，如果需要把加载请求委派给启动类加载器，直接使用 null 代替即可。</p>
+<h4 id="扩展类加载器（Extension-ClassLoader）"><a href="#扩展类加载器（Extension-ClassLoader）" class="headerlink" title="扩展类加载器（Extension ClassLoader）"></a>扩展类加载器（Extension ClassLoader）</h4><p>由 ExtClassLoader（sun.misc.Launcher$ExtClassLoader）实现的。它负责将 &lt; JAVA_HOME &gt;/lib/ext 或者被 java.ext.dir 系统变量所指定路径中的所有类库加载到内存中，开发者可以直接使用扩展类加载器。</p>
+<h4 id="应用程序类加载器（Application-ClassLoader）"><a href="#应用程序类加载器（Application-ClassLoader）" class="headerlink" title="应用程序类加载器（Application ClassLoader）"></a>应用程序类加载器（Application ClassLoader）</h4><p>由 AppClassLoader（sun.misc.Launcher$AppClassLoader）实现的。由于这个类加载器是 ClassLoader 中的 getSystemClassLoader() 方法的返回值，因此一般称为系统类加载器。它负责加载用户类路径（ClassPath）上所指定的类库，开发者可以直接使用这个类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。</p>
+<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/class_loader_hierarchy.png" alt="此处输入图片的描述"><br>应用程序都是由三种类加载器相互配合进行加载的，如果有必要，还可以加入自己定义的类加载器。上图展示的类加载器之间的层次关系，称为类加载器的<strong>双亲委派模型</strong>（Parents Delegation Model）。该模型要求除了顶层的启动类加载器外，其余的类加载器都要有自己的父类加载器。这里类加载器之间的父子关系一般通过组合（Composition）关系来实现，而不是通过继承（Inheritance）的关系实现。</p>
+<h4 id="工作过程"><a href="#工作过程" class="headerlink" title="工作过程"></a>工作过程</h4><p>如果一个类加载器收到了类加载的请求，它会首先将类加载请求传送到父类加载器，只有当父类加载器无法完成类加载请求时才尝试自己加载。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>使得 Java 类随着它的类加载器一起具有一种带有优先级的层次关系，从而使得基础类得到统一。无论那个类加载器要加载这个类，最终都是委托给处于模型最顶端的启动类加载器进行加载，因此Object类在程序的各种类加载器环境中都是同一个类。（防止内存中出现多份同样的字节码）</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">protected Class&lt;?&gt; loadClass(String name, boolean resolve) throws ClassNotFoundException &#123;</div><div class="line">        synchronized (getClassLoadingLock(name)) &#123;</div><div class="line">            // 首先检查请求的类是否已经被加载过了</div><div class="line">            Class&lt;?&gt; c = findLoadedClass(name);</div><div class="line">            if (c == null) &#123;</div><div class="line">                try &#123;</div><div class="line">                    if (parent != null) &#123;</div><div class="line">                        c = parent.loadClass(name, false);</div><div class="line">                    &#125; else &#123;</div><div class="line">                        c = findBootstrapClassOrNull(name);</div><div class="line">                    &#125;</div><div class="line">                &#125; catch (ClassNotFoundException e) &#123;</div><div class="line">                    //如果父类加载器抛出异常说明父类加载器无法完成加载请求</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                if (c == null) &#123;</div><div class="line">                    // 父类无法加载调用自身的findClass方法进行类加载</div><div class="line">                    c = findClass(name);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            if (resolve) &#123;</div><div class="line">                resolveClass(c);</div><div class="line">            &#125;</div><div class="line">            return c;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>PS：在学习的过程中，参考了许多博客，这里对他们表示感谢！<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA.md#%E5%9B%9B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6" target="_blank" rel="external">https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA.md#%E5%9B%9B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6</a><br><a href="http://www.cnblogs.com/ityouknow/p/5603287.html" target="_blank" rel="external">http://www.cnblogs.com/ityouknow/p/5603287.html</a><br><a href="https://blog.csdn.net/w760079528/article/details/77845267" target="_blank" rel="external">https://blog.csdn.net/w760079528/article/details/77845267</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/09/JVM学习笔记-3-——JAVA类文件结构/" rel="prev" title="JVM学习笔记(3)——JAVA类文件结构">
+                JVM学习笔记(3)——JAVA类文件结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2019/02/12/JVM学习笔记-4-——JAVA类加载机制/"
+           data-title="JVM学习笔记(4)——JAVA类加载机制" data-url="http://oppalu.github.io/2019/02/12/JVM学习笔记-4-——JAVA类加载机制/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Phoebe" />
+          <p class="site-author-name" itemprop="name">Phoebe</p>
+          <p class="site-description motion-element" itemprop="description">分享学习过程中的一些心得</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/oppalu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1915317773" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/qing-jiao-wo-ou-ba-lu" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类的生命周期"><span class="nav-number">1.</span> <span class="nav-text">类的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类初始化的时机"><span class="nav-number">2.</span> <span class="nav-text">类初始化的时机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主动引用"><span class="nav-number">2.1.</span> <span class="nav-text">主动引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#被动引用"><span class="nav-number">2.2.</span> <span class="nav-text">被动引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载的过程"><span class="nav-number">3.</span> <span class="nav-text">类加载的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载：查找并加载类的二进制数据"><span class="nav-number">3.1.</span> <span class="nav-text">加载：查找并加载类的二进制数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证：确保被加载的类的正确性"><span class="nav-number">3.2.</span> <span class="nav-text">验证：确保被加载的类的正确性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备：为类的静态变量分配内存并初始化"><span class="nav-number">3.3.</span> <span class="nav-text">准备：为类的静态变量分配内存并初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析：把类中的符号引用转换为直接引用"><span class="nav-number">3.4.</span> <span class="nav-text">解析：把类中的符号引用转换为直接引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">3.5.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载器"><span class="nav-number">4.</span> <span class="nav-text">类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的加载"><span class="nav-number">4.1.</span> <span class="nav-text">类的加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载器种类"><span class="nav-number">4.2.</span> <span class="nav-text">类加载器种类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动类加载器-Bootstrap-ClassLoader"><span class="nav-number">4.2.1.</span> <span class="nav-text">启动类加载器(Bootstrap ClassLoader)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展类加载器（Extension-ClassLoader）"><span class="nav-number">4.2.2.</span> <span class="nav-text">扩展类加载器（Extension ClassLoader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用程序类加载器（Application-ClassLoader）"><span class="nav-number">4.2.3.</span> <span class="nav-text">应用程序类加载器（Application ClassLoader）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲委派模型"><span class="nav-number">4.3.</span> <span class="nav-text">双亲委派模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工作过程"><span class="nav-number">4.3.1.</span> <span class="nav-text">工作过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">4.3.2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">4.3.3.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe Gao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"phoebegl"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
