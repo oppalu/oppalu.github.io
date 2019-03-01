@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/11548741556940.gif">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A11.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A12.png">
-<meta property="og:updated_time" content="2019-02-05T15:26:11.795Z">
+<meta property="og:updated_time" content="2019-02-13T08:07:27.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM学习笔记(1)——内存区域">
 <meta name="twitter:description" content="之前断断续续的看JVM，这次打算从头完整的学习一遍《深入理解JAVA虚拟机》一书，并利用博客把学习过程记录下来。这篇主要根据书中第2章内容和一些博客介绍一下JAVA的内存区域划分的相关知识。">
@@ -401,7 +401,8 @@
 </ol>
 <h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/JVM.jpg" alt="JVM内存模型"><br>如上图所示，Java虚拟机所管理的内存包括<strong>程序计数器，Java虚拟机栈，本地方法栈，方法区，Java堆和运行时常量池</strong>几个运行时数据区域，其中方法区和堆由<strong>所有线程共享</strong>，剩下三个是<strong>线程隔离</strong>的数据区（如下图示例）。即JVM在初始运行的时候会分配好方法区和堆，之后JVM 每遇到一个线程，就为其分配一个程序计数器，Java虚拟机栈和本地方法栈。<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/11548742157520.gif" alt="多线程的JVM内存区域示例"></p>
 <h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>程序计数器是一块较小的内存区域，作用是<strong>记录当前正在执行的虚拟机字节码指令的地址</strong>(如果执行的是Native方法则值为空)。虚拟机在执行字节码时，通过改变PC的值来选择下一条需要执行的字节码指令。<br>每个线程需要有自己独立的程序计数器是为了确保多线程情况下线程切换后可以恢复到正确的执行位置（各线程之间计数器互不影响独立存储）。</p>
-<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>Java虚拟机栈描述了<strong>Java方法执行的内存模型</strong>。每个 Java 方法在执行的同时会创建一个栈帧(Stack frame)用于存储局部变量表(包含了对应的方法参数和局部变量)、操作数栈(实际上就是通过不断地进栈出栈进行计算)、方法返回地址等信息。从方法调用直至执行完成的过程，就对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/11548741556940.gif" alt="Java虚拟机栈"><br>这个区域有两种异常情况：</p>
+<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>Java虚拟机栈描述了<strong>Java方法执行的内存模型</strong>。每个 Java 方法在执行的同时会创建一个栈帧(Stack frame)用于存储局部变量表(包含了对应的方法参数和局部变量)、操作数栈(实际上就是通过不断地进栈出栈进行计算)、动态连接、方法返回地址等信息。从方法调用直至执行完成的过程，就对应着一个栈帧在 Java 虚拟机栈中入栈和出栈的过程。<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/11548741556940.gif" alt="Java虚拟机栈"></p>
+<p>这个区域有两种异常情况：</p>
 <ul>
 <li>如果线程请求的栈深度大于虚拟机容许的最大深度，将抛出StackOverflowError异常</li>
 <li>如果虚拟机栈可以动态扩展，但是扩展时无法申请到足够的内存，抛出OutOfMemoryError异常。 </li>
@@ -541,7 +542,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -549,7 +550,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -558,7 +559,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
