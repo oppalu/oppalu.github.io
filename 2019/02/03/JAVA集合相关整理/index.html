@@ -94,7 +94,8 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full_collection2.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/49d6de7b-0d0d-425c-9e49-a1559dc23b10.png">
-<meta property="og:updated_time" content="2019-03-01T12:09:45.984Z">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/ConcurrentHashMap.jpg">
+<meta property="og:updated_time" content="2019-03-12T08:31:55.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA集合相关整理">
 <meta name="twitter:description" content="概述下面两张图所示是JAVA的集合框架图，从整体上可以发现JAVA容器主要包括了Collection和Map两种。List， Queue和Set集合共同继承Collection这个父接口，Map集合是单独的一个接口。">
@@ -387,7 +388,7 @@
 <li>List<br>List的每一个位置按照索引位置摆放，像一个柜子一层一层的，可以有重复的元素(根据索引找元素)<ul>
 <li>ArrayList：基于动态数组实现,支持随机访问。</li>
 <li>Vector：和ArrayList类似，但它是线程安全的。(<strong>开销也比 ArrayList 要大，访问速度更慢，因此要避免使用</strong>)</li>
-<li>LinkedList：基于双向链表实现，只能顺序访问，但是可以<strong>快速地在链表任何位置</strong>插入和删除元素。此外，LinkedList 还可以用作栈、队列和双向队列。</li>
+<li>LinkedList：基于双向链表实现，只能<strong>顺序访问</strong>，但是可以<strong>快速地在链表任何位置</strong>插入和删除元素。此外，LinkedList 还可以用作栈、队列和双向队列。</li>
 </ul>
 </li>
 <li>Set<br>Set的每个元素不按顺序进行排序，无序不重复<ul>
@@ -416,8 +417,14 @@
 <h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><ul>
 <li>实现与ArrayList类似，但是使用了<strong>synchronized</strong>进行同步。</li>
 <li>每次扩容请求其大小的 2 倍空间</li>
-<li>由于效率较低，如果需要同步可以使用Collections.synchronizedList()得到一个线程安全的 ArrayList。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = new ArrayList&lt;&gt;();</div><div class="line">List&lt;String&gt; synList = Collections.synchronizedList(list);</div></pre></td></tr></table></figure>
+<li>由于效率较低，如果需要同步可以使用Collections.synchronizedList()得到一个线程安全的 ArrayList,或者concurrent并发包下的 CopyOnWriteArrayList 类。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = new ArrayList&lt;&gt;();</div><div class="line">List&lt;String&gt; synList = Collections.synchronizedList(list);</div></pre></td></tr></table></figure>
 </li>
+</ul>
+<h3 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h3><ul>
+<li>concurrent并发包下的类</li>
+<li>实现了<strong>读写分离</strong>，读操作在原始数组上进行，写操作在一个复制的数组上进行，写操作需要加锁(ReetrantLock)，写操作结束后需要把原始数组指向新的复制数组。</li>
+<li>适用于读多写少的应用场景。</li>
+<li>缺陷在于：写操作需要复制数组使得内存占用。此外读操作不能读到实时性的数据(写操作的数据还未同步到读数组中)</li>
 </ul>
 <h3 id="LinkedList-基于双向链表实现"><a href="#LinkedList-基于双向链表实现" class="headerlink" title="LinkedList(基于双向链表实现)"></a>LinkedList(基于双向链表实现)</h3><ul>
 <li>内部节点Node定义了前指针prev和后指针next<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">private static class Node&lt;E&gt; &#123;</div><div class="line">    E item;</div><div class="line">    Node&lt;E&gt; next;</div><div class="line">    Node&lt;E&gt; prev;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -430,12 +437,40 @@
 <li>当插入一个<k,v>键值对时，先计算K的hashcode，<strong>使用除留余数法得到所在的桶下标</strong>(如hashCode为115，HashMap大小为16，则得到桶的下标为115%16=3)。</k,v></li>
 <li>当查找时，先根据hashCode计算键值对所在的桶，然后在对应的链表上顺序查找，时间复杂度和链表的长度成正比。</li>
 <li>HashMap 允许插入键为 null 的键值对。但是因为无法调用 null 的 hashCode() 方法，也就无法确定该键值对的桶下标，因此使用第 0 个桶存放键为 null 的键值对。</li>
+<li>hash的实现：是通过 hashCode() 的高 16 位异或低 16 位实现的：(h = k.hashCode()) ^ (h &gt;&gt;&gt; 16)</li>
 </ul>
-<h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>与HashMap类似，使用 synchronized 来进行同步,可以插入键为 null 的 Entry。<br>不建议在新代码中使用，不需要线程安全的场合可以用HashMap替换，需要线程安全的场合可以用ConcurrentHashMap替换。(HashTable 使用一把锁（锁住整个链表结构）处理并发问题，多个线程竞争一把锁，容易阻塞)</p>
-<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><ul>
-<li>和 HashMap 实现上类似，差别在于 ConcurrentHashMap 采用了分段锁（Segment），每个分段锁维护着几个桶（HashEntry），多个线程可以同时访问不同分段锁上的桶，从而使其并发度更高。</li>
+<h4 id="扩容resize"><a href="#扩容resize" class="headerlink" title="扩容resize()"></a>扩容resize()</h4><ul>
+<li>设 HashMap 的 table 长度为 M，需要存储的键值对数量为 N</li>
+<li>参数：<ul>
+<li>capacity: table的默认大小(16)，必须为2^n</li>
+<li>size: 键值对数量</li>
+<li>threshold: size的临界值，size &gt;= threshold的时候就要进行扩容</li>
+<li>loadFactor: 装载因子，即table能够使用的比例(默认0.75)，threshold = capacity*loadFactor</li>
 </ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>HashSet是通过HashMap来实现的而TreeSet是通过TreeMap来实现的，因此这里不过多介绍</p>
+</li>
+<li>需要扩容时，capacity为原来的两倍</li>
+<li>要重新计算桶下标：(假设原来是16，现在是32，若原key在第5位是0则不变，否则是原来的key+16)</li>
+<li>HashMap在并发环境下使用中最为典型的一个问题，就是在HashMap进行扩容重哈希时导致Entry链形成环。一旦Entry链中有环，势必会导致在同一个桶中进行插入、查询、删除等操作时陷入死循环。</li>
+</ul>
+<h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><ul>
+<li>与HashMap类似，使用 synchronized 来进行同步。不能插入键为null的Entry。</li>
+<li>HashMap 需要重新计算 hash 值，而 HashTable 直接使用对象的 hashCode</li>
+<li>不建议在新代码中使用，不需要线程安全的场合可以用HashMap替换，需要线程安全的场合可以用ConcurrentHashMap替换。(HashTable 使用一把锁（锁住整个链表结构）处理并发问题，多个线程竞争一把锁，容易阻塞)</li>
+</ul>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/ConcurrentHashMap.jpg" alt="ConcurrentHashMap"></p>
+<ul>
+<li>如图所示，ConcurrentHashMap本质上是一个Segment数组，而一个Segment实例又包含若干个桶，每个桶中都包含一条由若干个 HashEntry 对象链接起来的链表。多个线程可以同时访问不同分段锁上的桶，从而使其并发度更高。</li>
+<li>而HashTable 使用一把锁（锁住整个链表结构）处理并发问题，多个线程竞争一把锁，容易阻塞</li>
+<li>此外通过 HashEntry的不变性、Volatile变量的内存可见性和加锁重读机制保证高效、安全的读操作；</li>
+</ul>
+<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><ul>
+<li>继承自HashMap</li>
+<li>内部维护了一个双向链表，用来维护插入顺序</li>
+<li>适合在需要输出的顺序和输入的顺序相同的情况下。</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>TreeSet：实现SortMap接口，能够把它保存的记录根据键排序（默认按键值升序排序，也可以指定排序的比较器）。适合于需要按照自然顺序或自定义顺序遍历键的情况下。<br>HashSet是通过HashMap来实现的而TreeSet是通过TreeMap来实现的，因此这里不过多介绍</li>
+</ul>
 <hr>
 <p>PS：在学习的过程中，参考了许多博客，这里对他们表示感谢！<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20%E5%AE%B9%E5%99%A8.md" target="_blank" rel="external">https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Java%20%E5%AE%B9%E5%99%A8.md</a></p>
 
@@ -635,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">1.1.</span> <span class="nav-text">Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.2.</span> <span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码简单分析"><span class="nav-number">2.</span> <span class="nav-text">源码简单分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList（基于数组实现）"><span class="nav-number">2.1.</span> <span class="nav-text">ArrayList（基于数组实现）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector"><span class="nav-number">2.2.</span> <span class="nav-text">Vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList-基于双向链表实现"><span class="nav-number">2.3.</span> <span class="nav-text">LinkedList(基于双向链表实现)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-链表-数组"><span class="nav-number">2.4.</span> <span class="nav-text">HashMap(链表+数组)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable"><span class="nav-number">2.5.</span> <span class="nav-text">HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">2.6.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">2.7.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">1.1.</span> <span class="nav-text">Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.2.</span> <span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码简单分析"><span class="nav-number">2.</span> <span class="nav-text">源码简单分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList（基于数组实现）"><span class="nav-number">2.1.</span> <span class="nav-text">ArrayList（基于数组实现）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector"><span class="nav-number">2.2.</span> <span class="nav-text">Vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CopyOnWriteArrayList"><span class="nav-number">2.3.</span> <span class="nav-text">CopyOnWriteArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList-基于双向链表实现"><span class="nav-number">2.4.</span> <span class="nav-text">LinkedList(基于双向链表实现)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-链表-数组"><span class="nav-number">2.5.</span> <span class="nav-text">HashMap(链表+数组)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#扩容resize"><span class="nav-number">2.5.1.</span> <span class="nav-text">扩容resize()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable"><span class="nav-number">2.6.</span> <span class="nav-text">HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">2.7.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedHashMap"><span class="nav-number">2.8.</span> <span class="nav-text">LinkedHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">2.9.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
             
 
           </div>
