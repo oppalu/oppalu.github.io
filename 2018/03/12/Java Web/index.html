@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/jpa.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Hibernate.png">
-<meta property="og:updated_time" content="2019-03-14T13:29:45.000Z">
+<meta property="og:updated_time" content="2019-03-14T13:32:25.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2EE复习整理">
 <meta name="twitter:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg">
@@ -546,7 +546,7 @@
 <li>setter注入(值注入)</li>
 <li>构造注入：没有设值注入的情况下才会根据配置文件中的构造注入，一旦有设值注入，则构造注入失效</li>
 <li>注解定义完成依赖注入：<ul>
-<li>@Autowired: Spring 会根据类型去IoC容器寻找定义的 Bean 然后将其注入。<strong>按类型注入</strong></li>
+<li>@Autowired: Spring 会根据类型去IoC容器<strong>使用反射</strong>寻找定义的 Bean 然后将其注入。<strong>按类型注入</strong></li>
 <li>@Resource: 按照bean的名字来进行注入的，如果我们没有在使用@Resource时指定bean的名字，同时Spring容器中又没有该名字的bean,这时候@Resource就会退化为@Autowired即按照类型注入 </li>
 </ul>
 </li>
