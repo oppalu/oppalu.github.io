@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/249993-20170308201424313-1417214713.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A11.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A12.png">
-<meta property="og:updated_time" content="2019-03-13T08:13:32.109Z">
+<meta property="og:updated_time" content="2019-03-13T08:52:02.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM学习笔记(1)——内存区域">
 <meta name="twitter:description" content="之前断断续续的看JVM，这次打算从头完整的学习一遍《深入理解JAVA虚拟机》一书，并利用博客把学习过程记录下来。这篇主要根据书中第2章内容和一些博客介绍一下JAVA的内存区域划分的相关知识。">
@@ -387,15 +387,16 @@
       
         <hr>
 <p>之前断断续续的看JVM，这次打算从头完整的学习一遍《深入理解JAVA虚拟机》一书，并利用博客把学习过程记录下来。这篇主要根据书中第2章内容和一些博客介绍一下JAVA的内存区域划分的相关知识。<br><a id="more"></a></p>
-<h2 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h2><p>JVM即Java Virtual Machine，JAVA程序实际上就是交由JVM执行，我们先来看看JVM的大致组成<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/%E5%9B%BE%E7%89%87%201.png" alt="此处输入图片的描述"><br>从上图可以看出，JVM由四大块组成：<strong>Class Loader类加载器，JVM运行时数据区，执行引擎和本地接口</strong>。这里简单的介绍一下各个部分，虚拟机执行子系统的具体内容会在后续JVM相关的博客中进行介绍。</p>
+<h2 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h2><p>JVM即Java Virtual Machine，JAVA程序实际上就是交由JVM执行，我们先来看看JVM的大致组成</p>
+<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/%E5%9B%BE%E7%89%87%201.png" alt="此处输入图片的描述"><br>从上图可以看出，JVM由四大块组成：<strong>Class Loader类加载器，JVM运行时数据区，执行引擎和本地接口</strong>。这里简单的介绍一下各个部分，虚拟机执行子系统的具体内容会在后续JVM相关的博客中进行介绍。</p>
 <ol>
 <li>Class Loader类加载器，主要负责查找，加载，解析 字节码文件(.class后缀)到JVM内存区，以供JVM执行引擎执行加载的字节码。</li>
 <li>JVM运行时数据区，具体将在后文进行介绍</li>
 <li>执行引擎主要是把可解释的代码，解释为操作系统机器码。当字节码文件被加载到内存后变成了JVM可解释的代码，JVM执行引擎就负责执行这些代码来完成相应的任务。</li>
 <li>本地接口主要是把不同语言实现的方法提供给Java调用。</li>
 </ol>
-<p>Java程序的具体执行过程如下：</p>
-<ol>
+<h3 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h3><p>Javac编译器完成程序源码经过<strong>词法分析</strong>、<strong>语法分析</strong>形成抽象语法树，然后遍历语法树生成线性的字节码指令流。</p>
+<h3 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h3><ol>
 <li>首先Java源代码文件(.java后缀)会被Java编译器编译为字节码文件(.class后缀)。每个java程序都需要运行在自己的JVM上，并告知 JVM 程序的运行入口</li>
 <li>然后JVM中的Class Loader(类加载器)会加载各个类的字节码文件，加载完毕之后，交由JVM中的执行引擎执行。</li>
 <li>在整个程序执行过程中，JVM会用一段空间来存储程序执行过程中需要用到的数据和相关信息，这段空间一般被称作为Runtime Data Area（运行时数据区），也就是我们常说的JVM内存。</li>
@@ -547,7 +548,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -564,7 +565,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -628,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM简介"><span class="nav-number">1.</span> <span class="nav-text">JVM简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">2.</span> <span class="nav-text">运行时数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">2.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java虚拟机栈"><span class="nav-number">2.2.</span> <span class="nav-text">Java虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">2.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java堆"><span class="nav-number">2.4.</span> <span class="nav-text">Java堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新生代与老年代"><span class="nav-number">2.4.1.</span> <span class="nav-text">新生代与老年代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#老年代"><span class="nav-number">2.4.2.</span> <span class="nav-text">老年代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Eden"><span class="nav-number">2.4.3.</span> <span class="nav-text">Eden</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Survivor"><span class="nav-number">2.4.4.</span> <span class="nav-text">Survivor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">2.5.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时常量池"><span class="nav-number">2.6.</span> <span class="nav-text">运行时常量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接内存"><span class="nav-number">2.7.</span> <span class="nav-text">直接内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的访问定位"><span class="nav-number">2.8.</span> <span class="nav-text">对象的访问定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM调用实例"><span class="nav-number">2.9.</span> <span class="nav-text">JVM调用实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OutOfMemoryError异常"><span class="nav-number">3.</span> <span class="nav-text">OutOfMemoryError异常</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM简介"><span class="nav-number">1.</span> <span class="nav-text">JVM简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成"><span class="nav-number">1.1.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译过程"><span class="nav-number">1.2.</span> <span class="nav-text">编译过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行过程"><span class="nav-number">1.3.</span> <span class="nav-text">执行过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">2.</span> <span class="nav-text">运行时数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">2.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java虚拟机栈"><span class="nav-number">2.2.</span> <span class="nav-text">Java虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">2.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java堆"><span class="nav-number">2.4.</span> <span class="nav-text">Java堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新生代与老年代"><span class="nav-number">2.4.1.</span> <span class="nav-text">新生代与老年代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#老年代"><span class="nav-number">2.4.2.</span> <span class="nav-text">老年代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Eden"><span class="nav-number">2.4.3.</span> <span class="nav-text">Eden</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Survivor"><span class="nav-number">2.4.4.</span> <span class="nav-text">Survivor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">2.5.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时常量池"><span class="nav-number">2.6.</span> <span class="nav-text">运行时常量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接内存"><span class="nav-number">2.7.</span> <span class="nav-text">直接内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的访问定位"><span class="nav-number">2.8.</span> <span class="nav-text">对象的访问定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM调用实例"><span class="nav-number">2.9.</span> <span class="nav-text">JVM调用实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OutOfMemoryError异常"><span class="nav-number">3.</span> <span class="nav-text">OutOfMemoryError异常</span></a></li></ol></div>
             
 
           </div>

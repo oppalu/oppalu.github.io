@@ -1,0 +1,1058 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spring Hibernate Servlet J2EE," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="keywords" content="Spring Hibernate Servlet J2EE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="J2EE复习整理">
+<meta property="og:url" content="http://oppalu.github.io/2018/03/12/Java Web/index.html">
+<meta property="og:site_name" content="Phoebe's blog">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/jpa.png">
+<meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Hibernate.png">
+<meta property="og:updated_time" content="2019-03-14T13:29:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="J2EE复习整理">
+<meta name="twitter:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://oppalu.github.io/2018/03/12/Java Web/"/>
+
+
+
+
+
+  <title> J2EE复习整理 | Phoebe's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Phoebe's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">分享一些学习上的心得经验</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'd_ECTHagZyTfch7gNRi6','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://oppalu.github.io/2018/03/12/Java Web/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Phoebe">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Phoebe's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Phoebe's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                J2EE复习整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T15:34:45+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2018/03/12/Java Web/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/03/12/Java Web/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><ul>
+<li>2开头表示成功处理了请求的状态代码(200：请求成功)</li>
+<li>3开头表示重定向</li>
+<li>4开头表示请求出错(401未授权，403服务器拒绝服务，404找不到资源)</li>
+<li>5开头表示服务器内部出错(500服务器内部错误)</li>
+</ul>
+<h3 id="GET-amp-POST"><a href="#GET-amp-POST" class="headerlink" title="GET&amp;POST"></a>GET&amp;POST</h3><ul>
+<li>get一般用于从服务器上获取数据，post一般用于向服务器传送数据</li>
+<li>请求的时候参数的位置有区别，get的参数是拼接在url后面，用户在浏览器地址栏可以看到。post是放在http包的包体中。</li>
+<li>能提交的数据有区别，get方式能提交的数据只能是文本，且大小不超过1024个字节，而post还可以提交二进制文件。</li>
+<li>servlet在处理请求的时候分别对应使用doGet和doPost方式进行处理请求 </li>
+</ul>
+<h3 id="Http请求的URL组成部分包括哪些元素？各表示什么内容？"><a href="#Http请求的URL组成部分包括哪些元素？各表示什么内容？" class="headerlink" title="Http请求的URL组成部分包括哪些元素？各表示什么内容？"></a>Http请求的URL组成部分包括哪些元素？各表示什么内容？</h3><p>URL组成：<a href="http://[host]:[port][request" target="_blank" rel="external">http://[host]:[port][request</a> path]?[query string]<br>Request路径</p>
+<ul>
+<li>上下文路径（Context path）：/+ Web应用的上下文根目录。</li>
+<li>servlet路径（servlet path）：/+与激活该请求的组件别名</li>
+<li>路径信息（path info）：/+请求路径的部分，不是上下文路径或者servlet路径的部分。</li>
+</ul>
+<h2 id="J2EE"><a href="#J2EE" class="headerlink" title="J2EE"></a>J2EE</h2><h3 id="J2EE组件"><a href="#J2EE组件" class="headerlink" title="J2EE组件"></a>J2EE组件</h3><ul>
+<li>客户端程序和applets是运行在客户端的组件.</li>
+<li>java servlet 和jsp技术是运行在服务器端的服务器组件.</li>
+<li>EJB技术是运行在服务器端的商务逻辑组件.</li>
+</ul>
+<h3 id="一个JavaWeb应用的请求处理流程"><a href="#一个JavaWeb应用的请求处理流程" class="headerlink" title="一个JavaWeb应用的请求处理流程"></a>一个JavaWeb应用的请求处理流程</h3><ul>
+<li>客户端发送一个 HTTP 请求到 web 服务器。</li>
+<li>实现了 Java Servlet 和 JSP 技术的 web 服务器将请求转换为 HTTPServletRequest 对象。 </li>
+<li>这个对象被交给 web 组件，该组件可以和 JavaBeans 组件或数据库交互从而生成动态内容。</li>
+<li>然后 web 组件可能生成一个 HTTPServletResponse，也可能将此请求转发给另一个 web 组件。</li>
+<li>web 组件最后生成一个 HTTPServletResponse 对象。</li>
+<li>web 服务器将这个对象转换成一个 HTTP response，然后将它返回给客户端。</li>
+</ul>
+<h3 id="Web容器"><a href="#Web容器" class="headerlink" title="Web容器"></a>Web容器</h3><ul>
+<li>Web组件运行在Web容器上，容器提供了请求分派、安全(可配置)、并发(多线程管理)、生命周期管理等功能。</li>
+</ul>
+<h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg" alt="Tomcat"></p>
+<ul>
+<li>Server: 代表一个服务器，可包含多个Service</li>
+<li>Service：可包含一个Engine，多个Connector</li>
+<li>Connector: 在某个指定端口上侦听客户请求，并将请求交给Engine处理</li>
+<li>Engine: 将获得的请求匹配到某个虚拟主机上，把请求交给host处理</li>
+<li>Host: 每个和网络域名匹配，每个可部署多个Web应用(对应不同的Context)</li>
+<li>Context: 对应一个Web应用</li>
+<li>web.xml: 创建时根据其载入Servlet类。获得请求后查询映射表找到被请求的Servlet类，并执行以获得请求回应。</li>
+</ul>
+<h4 id="Tomcat处理http请求的过程"><a href="#Tomcat处理http请求的过程" class="headerlink" title="Tomcat处理http请求的过程"></a>Tomcat处理http请求的过程</h4><ul>
+<li>请求被发送到本机端口8080，被Java HTTP Connector获得；</li>
+<li>Connector将该请求交给它所在的Service的Engine来处理，并等待Engine的回应；</li>
+<li>Engine获得请求，匹配所有虚拟主机；</li>
+<li>Engine匹配到名为localhost的主机；</li>
+<li>localhost主机获得请求，匹配所拥有的所有Context；</li>
+<li>localhost主机匹配到路径为/HelloWorld的Context；</li>
+<li>路径为/HelloWorld的Context获得请求，在映射表中寻找对应的Servlet；</li>
+<li>Context匹配到URL PATTERN为/的Servlet;</li>
+<li>构造HttpServletRequest对象和HttpServletResponse对象，作为参数调用该Servlet的Service方法；</li>
+<li>Context把执行完之后的HttpServletResponse对象返回给localhost主机；</li>
+<li>Host把HttpServletResponse对象返回给Engine；</li>
+<li>Engine把HttpServletResponse对象返回给Connector；</li>
+<li>Connector把HttpServletResponse对象返回给客户Browser。</li>
+</ul>
+<h3 id="EJB-Session-Bean三种状态"><a href="#EJB-Session-Bean三种状态" class="headerlink" title="EJB Session Bean三种状态"></a>EJB Session Bean三种状态</h3><ul>
+<li>Stateful Session Bean：代表了一个唯一的client与bean的一次会话，不共享。</li>
+<li>Stateless Session Bean：bean不保存与client的交互状态，只在一个方法调用的范围内维护client的信息，调用结束后状态消除。</li>
+<li>Singleton Session Bean：对每个应用只实例化一次，并存在于整个应用的生命周期内。</li>
+</ul>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h3><ul>
+<li>定义：是Java编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态Web内容。是所有web应用技术的基础</li>
+<li>任务：读取客户端（浏览器）发送的显式的数据，读取客户端（浏览器）发送的隐式的 HTTP 请求数据，处理数据并生成结果，发送显式的数据（即文档）到客户端（浏览器），发送隐式的 HTTP 响应到客户端（浏览器）</li>
+</ul>
+<h3 id="开发HttpServlet步骤"><a href="#开发HttpServlet步骤" class="headerlink" title="开发HttpServlet步骤"></a>开发HttpServlet步骤</h3><ul>
+<li>扩展HttpServlet类（使用@WebServlet注解,并指定映射的URL模式）</li>
+<li>调用init()方法进行初始化</li>
+<li>定制service()：重写 doGet 或 doPost 方法，[而不是service()]</li>
+<li>在Web.xml中配置新的Servlet[<servlet-mapping servlet-name&url-pattern="">,通过URL中的url-pattern匹配寻找对应名字的servlet，然后对应处理]</servlet-mapping></li>
+</ul>
+<h3 id="Servlet生命周期："><a href="#Servlet生命周期：" class="headerlink" title="Servlet生命周期："></a>Servlet生命周期：</h3><ul>
+<li>调用init()方法进行初始化</li>
+<li>调用service()来处理客户端的请求。每次服务器接收到一个 Servlet 请求时，服务器会产生一个新的线程并调用服务。service() 方法检查 HTTP 请求类型（GET、POST、PUT、DELETE等），在适当的时候调用 doGet、doPost等方法。不用对service()方法做任何动作，只需要根据来自客户端的请求类型来重写 doGet() 或 doPost() 即可。</li>
+<li>调用destroy()方法终止</li>
+</ul>
+<h3 id="Servlet体系结构"><a href="#Servlet体系结构" class="headerlink" title="Servlet体系结构"></a>Servlet体系结构</h3><ul>
+<li>Servlet</li>
+<li>ServletConfig：获得配置属性</li>
+<li>ServletRequest</li>
+<li>ServletResponse</li>
+<li>ServletContext：包含Web应用的配置信息，Servlet需要的某些外部资源所在位置等</li>
+</ul>
+<h3 id="Servlet处理请求与响应的流程"><a href="#Servlet处理请求与响应的流程" class="headerlink" title="Servlet处理请求与响应的流程"></a>Servlet处理请求与响应的流程</h3><ul>
+<li>客户端在浏览器的地址栏中输入一个请求的URL,按回车后就向服务器端发起一个http request(由浏览器生成)。</li>
+<li>服务器端的Web Server首先接受到请求，并将请求转交给容器</li>
+<li>容器会根据URL,到web.xml中对Servlet的描述去查找要访问的Servlet，若找到，将此Servlet装载进虚拟机并实例化(第一次访问)，然后调用Servlet实例中的service方法处理请求，并分配一个线程去执行。</li>
+<li>若没有查找到，直接返回一个404的错误代码到客户端，表示访问的资源不存在。</li>
+<li>处理完，HttpServletResponse对象负责将信息返回给客户端[设置HTTP状态码, HTTP响应头， HTTP消息体等]</li>
+</ul>
+<h3 id="4种作用域对象"><a href="#4种作用域对象" class="headerlink" title="4种作用域对象"></a>4种作用域对象</h3><ul>
+<li>Application：作用域为应用程序运行期，工程启动后存在，当容器关闭时被销毁； </li>
+<li>Session：作用域为会话期，从打开一个浏览器窗口开始，关闭窗口，会话关闭，当会话超时，被销毁； </li>
+<li>Request：作用域为用户请求期，只要Server向客户端输出内容，就被销毁； </li>
+<li>Page：作用域为页面执行期</li>
+</ul>
+<h3 id="Servlet线程安全问题"><a href="#Servlet线程安全问题" class="headerlink" title="Servlet线程安全问题"></a>Servlet线程安全问题</h3><ul>
+<li>默认多线程</li>
+<li>实现 SingleThreadModel 接口(service方法不会有两个线程同时执行)</li>
+<li>使用synchronized 关键字同步对共享数据的操作</li>
+<li>避免在Servlet方法里使用实例变量</li>
+</ul>
+<h3 id="Servlet-session跟踪"><a href="#Servlet-session跟踪" class="headerlink" title="Servlet session跟踪"></a>Servlet session跟踪</h3><ul>
+<li>cookies: 一个 Web 服务器可以分配一个唯一的 sessionID 作为每个 Web 客户端的 cookie，使用cookie识别</li>
+<li>隐藏的表单字段</li>
+<li>URL重写: [reponse.encodeURL(URL)方法]在每个 URL 末尾追加一些额外的数据来标识 session 会话</li>
+</ul>
+<h3 id="cookie-amp-session"><a href="#cookie-amp-session" class="headerlink" title="cookie&amp;session"></a>cookie&amp;session</h3><ul>
+<li>cookie是服务器将一些数据存在客户端上，下次访问时传给服务器，服务器从而判断是哪个客户。适用于跟踪会话，长期“记住用户信息”，存储在本地计算机硬盘上</li>
+<li>session将数据只保存在服务器，生成一个sessionId传给客户端，只是通过cookie传递一个sessionId。</li>
+<li>区别：<ul>
+<li>安全性：cookie数据存放在客户的浏览器上，对客户端可见，可被客户端复制、修改，不安全，session 存储在服务器上，对客户端是透明，更安全</li>
+<li>有效期：cookie 可长久储存信息，session 不能长久储存信息，如果超时时间设置过长， 会导致服务器内存溢出（因为保存在服务器上占用服务器性能）</li>
+<li>大小限制：单个cookie保存的数据不能超过4K（有大小限制）</li>
+</ul>
+</li>
+</ul>
+<h3 id="转发（forward）和重定向（redirect）的区别？"><a href="#转发（forward）和重定向（redirect）的区别？" class="headerlink" title="转发（forward）和重定向（redirect）的区别？"></a>转发（forward）和重定向（redirect）的区别？</h3><ul>
+<li>forward()是RequestDispatcher对象的方法，是服务器容器中控制权的转向。服务器直接访问目标地址的URL，再把响应内容发给浏览器，浏览器不知道服务器发送的内容是从哪儿来的，所以它的地址栏中还是原来的地址</li>
+<li>sendRedirect()是HttpServletResponse对象的方法，是客户端跳转，因此从浏览器的地址栏中可以看到跳转后的链接地址</li>
+</ul>
+<h2 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h2><h3 id="什么是JSP？"><a href="#什么是JSP？" class="headerlink" title="什么是JSP？"></a>什么是JSP？</h3><p>在传统的网页HTML（标准通用标记语言的子集）文件(<em>.htm,</em>.html)中插入Java程序段(Scriptlet)和JSP标记(tag)，从而形成JSP文件，后缀名为(*.jsp)。可以轻松创建含有静态与动态web组件的web内容</p>
+<h3 id="JSP与Servlet的区别与联系"><a href="#JSP与Servlet的区别与联系" class="headerlink" title="JSP与Servlet的区别与联系"></a>JSP与Servlet的区别与联系</h3><ul>
+<li>联系：JSP是Servlet技术的扩展，本质上就是Servlet的简易方式。运行时JSP先被编译成”类servlet”。</li>
+<li>区别：1)jsp侧重于页面显示,servlet更侧重于逻辑控制<pre><code>2)Servlet完全是JAVA程序代码构成，jsp由HTML代码和JSP标签构成[html中嵌入java]
+  (Servlet的应用逻辑是在Java文件中，并且完全从表示层中的HTML里分离开来。而JSP是Java和HTML组合成一个扩展名为.jsp的文件。)
+</code></pre></li>
+</ul>
+<h2 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h2><h3 id="实体类四种状态"><a href="#实体类四种状态" class="headerlink" title="实体类四种状态"></a>实体类四种状态</h3><ul>
+<li>new：通过new生成一个实体对象，通过JVM获得了一块内存空间，但是并没有保存进数据库</li>
+<li>managed：纳入JPA EntityManager管理中的对象，在数据库中存在一条与它对应的记录，并拥有一个持久化标识</li>
+<li>detached：游离对象，脱离了JPA EntityManager的管理，对游离对象的操作不影响数据库。</li>
+<li>removed：remove()方法，删除数据库中的记录在适当的时候被垃圾回收<br><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/jpa.png" alt="jpa"></li>
+</ul>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><h3 id="Spring是什么？为什么要用Spring？"><a href="#Spring是什么？为什么要用Spring？" class="headerlink" title="Spring是什么？为什么要用Spring？"></a>Spring是什么？为什么要用Spring？</h3><ul>
+<li>为了解决企业应用开发的复杂性而创建的, 简化Java开发</li>
+<li>优点：1)通过依赖注入等实现松耦合，方便开发<pre><code>2)基于AOP进行声明式编程
+3)方便集成各种优秀的框架
+</code></pre></li>
+</ul>
+<h3 id="Ioc"><a href="#Ioc" class="headerlink" title="Ioc"></a>Ioc</h3><p>Ioc即控制反转(inverse of control)，就是将原本在程序中手动创建对象的控制权，交由Spring框架来管理。</p>
+<h4 id="Bean管理相关术语"><a href="#Bean管理相关术语" class="headerlink" title="Bean管理相关术语"></a>Bean管理相关术语</h4><ul>
+<li>BeanDefinition：用于管理各种对象以及它们之间相互依赖关系的核心数据结构。</li>
+<li>Resource：资源</li>
+<li>BeanWrapper：封装一个bean的行为，提供了设置和获取单个Bean的属性值、获取属性信息等功能</li>
+<li>作用域scope：singleton表示全局只有一个实例（默认），prototype表示每次被注入的时候都要重新创建一个实例。</li>
+</ul>
+<h4 id="IoC容器"><a href="#IoC容器" class="headerlink" title="IoC容器"></a>IoC容器</h4><ul>
+<li>BeanFactory：负责创建并维护Bean实例。将系统配置和依赖关系从代码中独立出来。从配置文件中读取类名、属性名，然后通过反射机制进行Bean加载和属性设置。<ul>
+<li>可配置：Bean属性值与依赖关系，Bean的创建模式，Bean初始化和销毁方法</li>
+<li>可通过getBean()获得指定bean的引用</li>
+</ul>
+</li>
+<li>ApplicationContext：是BeanFactory的子接口之一，功能多[支持AOP，支持统一的资源加载，国际化]。会自动解析我们配置的applicationContext.xml<ul>
+<li>标识一个应用环境，利用BeanFactory创建Bean对象，保存对象关系表，捕获各种事件。</li>
+<li>ApplicationContext初始化时会检验属性是否注入，而BeanFactory第一次使用时未注入会跑异常</li>
+</ul>
+</li>
+</ul>
+<h4 id="Spring的依赖注入方式"><a href="#Spring的依赖注入方式" class="headerlink" title="Spring的依赖注入方式"></a>Spring的依赖注入方式</h4><ul>
+<li>setter注入(值注入)</li>
+<li>构造注入：没有设值注入的情况下才会根据配置文件中的构造注入，一旦有设值注入，则构造注入失效</li>
+<li>注解定义完成依赖注入：<ul>
+<li>@Autowired: Spring 会根据类型去IoC容器寻找定义的 Bean 然后将其注入。<strong>按类型注入</strong></li>
+<li>@Resource: 按照bean的名字来进行注入的，如果我们没有在使用@Resource时指定bean的名字，同时Spring容器中又没有该名字的bean,这时候@Resource就会退化为@Autowired即按照类型注入 </li>
+</ul>
+</li>
+</ul>
+<h4 id="Spring-bean的定义方式"><a href="#Spring-bean的定义方式" class="headerlink" title="Spring bean的定义方式"></a>Spring bean的定义方式</h4><ul>
+<li>在XML中显式定义: <bean></bean></li>
+<li>在Java中显式定义</li>
+<li>基于注解的bean定义: 要定义扫描<ul>
+<li>@Component注解：表示 Spring IoC 会把这个类扫描成一个 bean 实例</li>
+<li>@ComponentScan注解：代表进行扫描，默认是扫描当前包的路径，扫描所有带有 @Component 注解的 POJO。</li>
+</ul>
+</li>
+</ul>
+<h4 id="IOC容器的初始化-refresh"><a href="#IOC容器的初始化-refresh" class="headerlink" title="IOC容器的初始化(refresh())"></a>IOC容器的初始化(refresh())</h4><ul>
+<li>Resource定位：即对资源文件的定位。由ResourceLoader通过统一的Resource接口完成。</li>
+<li>载入：通过BeanDefinitionReader来完成Bean定义信息的解析，把用户定义好的Bean表示成IOC容器的内部数据结构，即BeanDefinition</li>
+<li>注册：由BeanDefinitionRegistry实现的registerBeanDefiition方法进行。将BeanDefinition注入到HashMap中，IOC容器就是通过这个HashMap来管理数据。</li>
+</ul>
+<h4 id="IOC容器的依赖注入过程"><a href="#IOC容器的依赖注入过程" class="headerlink" title="IOC容器的依赖注入过程"></a>IOC容器的依赖注入过程</h4><p>依赖注入的过程是用户第一次向IoC容器索要Bean时触发的，lazy-init属性默认情况下设置的是初始化时就注入。调用getBean()也会注入</p>
+<ul>
+<li>从缓存获取当前beanName，看当前类型的bean是否已经被创建过</li>
+<li>如果创建过，就从当前BeanFactory中获取bean, 如果当前工厂取不到，就从双亲beanFactory中取，一直进行迭代查找。</li>
+<li>如果没有创建过就根据BeanDefinition创建一个bean。递归创建当前bean所依赖的所有bean，然后根据scope创建实例</li>
+<li>返回bean</li>
+</ul>
+<h4 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h4><ul>
+<li>简单来说：实例化-&gt;设置属性-&gt;设置Bean名称-&gt;预处理(初始化前)-&gt;初始化Bean-&gt;预处理(初始化后)-&gt;Bean已准备好-&gt;销毁</li>
+<li>具体来说：<ul>
+<li><strong>实例化</strong>一个Bean（由BeanFactory读取BeanDefinition，并生成各个实例）<em>——也就是我们常说的new；</em></li>
+<li>按照Spring上下文定义对实例化的Bean<strong>设置属性值</strong> <em>——也就是IOC注入；</em></li>
+<li>如果这个Bean实现了BeanNameAware接口，会调用它实现的setBeanName(String)方法。<em>——获得了自己在配置文件中的id</em></li>
+<li>如果这个Bean实现了BeanFactoryAware接口，会调用它实现的setBeanFactory(BeanFactory)。<em>——获得自己所在的BeanFactory</em></li>
+<li>如果这个Bean实现了ApplicationContextAware接口，会调用setApplicationContext(ApplicationContext)方法。<em>——获得了自己所在的ApplicationContext</em></li>
+<li>如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessBeforeInitialization()进行<strong>预初始化</strong></li>
+<li>如果Bean类实现了InitializingBean接口，则执行其afterPropertiesSet()方法。</li>
+<li>如果Bean声明了初始化方法，则调用该<strong>初始化</strong>方法。</li>
+<li>如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessAfterInitialization()进行后初始化。<em>——此时就可以正式使用该bean了</em></li>
+<li>当Bean不再需要时，如果Bean实现了DisposableBean接口，则会调用destroy()方法；</li>
+<li>最后，如果这个Bean有自定义的销毁方法，也会调用。</li>
+</ul>
+</li>
+</ul>
+<h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p>将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。</p>
+<h4 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h4><ul>
+<li>通知Advice：需要的功能，如事务管理等</li>
+<li>连接点JoinPoint：允许使用通知的点，如一个方法前/后/抛出异常时</li>
+<li>切入点Pointcut：定义在哪通知，即描述某一类选定的连接点。（选定在哪使用通知）</li>
+<li>切面Aspect：通知+切入点，即定义在哪里通知，通知什么</li>
+<li>目标对象Target：即被AOP动态代理的目标对象</li>
+</ul>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
+<li>实现核心是动态代理：为需要的业务逻辑生成代理类。代理拦截被通知方法的调用再把调用转发给真正的目标bean</li>
+<li>生成代理的方式：<ul>
+<li>ProxyFactoryBean：通过在IoC容器中完成声明式配置</li>
+<li>ProxyFactory：通过编程式的方式</li>
+<li>AspectJProxyFactory：集成AspectJ</li>
+</ul>
+</li>
+</ul>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>Spring事务处理模块是通过AOP功能来实现声明式事务处理的。</p>
+<h4 id="Spring事务传播行为类型"><a href="#Spring事务传播行为类型" class="headerlink" title="Spring事务传播行为类型"></a>Spring事务传播行为类型</h4><ul>
+<li>PROPAGATION_REQUIRED：如果当前没有事务，就新建一个事务。如果已经存在一个事务中，加入到这个事务中。</li>
+<li>PROPAGATION_REQUIRES_NEW：如果当前没有事务，就新建一个事务。如果当前存在事务，就把当前事务挂起，另建一个事务。</li>
+<li>PROPAGATION_NESTED：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED 类似的操作。外套的事务异常可使内嵌事务回滚，反之不会。</li>
+<li>PROPAGATION_SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。</li>
+<li>PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</li>
+<li>PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。</li>
+<li>PROPAGATION_MANDATORY：使用当前的事务，如果当前没有事务，就抛出异常。</li>
+</ul>
+<h4 id="Spring事务隔离级别"><a href="#Spring事务隔离级别" class="headerlink" title="Spring事务隔离级别"></a>Spring事务隔离级别</h4><ul>
+<li>Read uncommitted：可能出现脏读(事务B读取了事务A尚未提交的数据)</li>
+<li>Read committed：避免了脏读，但是可能会造成不可重复读。（事务A事先读取了数据，事务B紧接了更新了数据，并提交了事务，而事务A再次读取该数据时，数据已经发生了改变。）</li>
+<li>Repeatable read：一旦事务开始别的事务就不能进行修改</li>
+<li>Serializable：不仅可以避免脏读、不可重复读，还避免了幻像读。</li>
+</ul>
+<h4 id="Spring事务与数据库事务的关系？"><a href="#Spring事务与数据库事务的关系？" class="headerlink" title="Spring事务与数据库事务的关系？"></a>Spring事务与数据库事务的关系？</h4><p>Spring事务实际上是使用了数据库事务。Spring在数据库之上又进一步进行了封装，可以在不同的项目、不同的操作中再次对事务的传播行为和隔离级别进行策略控制。</p>
+<h2 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h2><h3 id="关键组件"><a href="#关键组件" class="headerlink" title="关键组件"></a>关键组件</h3><ul>
+<li>核心控制器DispatcherServlet：<ul>
+<li>它负责处理HTTP请求, 加载配置文件, 初始化上下应用对象ApplicationContext（负责接收用户的请求并根据用户的请求返回相应的视图给用户。）</li>
+</ul>
+</li>
+<li>handleMapping：<ul>
+<li>路径映射关系，根据URL匹配handler</li>
+</ul>
+</li>
+<li>ViewResolver视图解析器：选择结果应该如何渲染</li>
+</ul>
+<h3 id="SpringMVC处理请求的流程"><a href="#SpringMVC处理请求的流程" class="headerlink" title="SpringMVC处理请求的流程"></a>SpringMVC处理请求的流程</h3><ul>
+<li>前端控制器DispatcherServlet获取用户发送的请求，DispatcherServlet查询handleMapping应将请求发给那个处理器，</li>
+<li>处理器映射器查询后返回一个执行链(没有返回404)</li>
+<li>然后DispatcherServlet将请求委托给对应的处理器适配器HandlerAdapter，适配器找到对应的页面控制器controller执行。</li>
+<li>控制器controller从模型处调用业务对象，model返回模型数据，控制器返回ModelAndView</li>
+<li>前端控制器通过匹配视图解析器查询正确的视图，请求view渲染视图并产生响应返回给用户</li>
+</ul>
+<h3 id="SpringMVC与Structs对比"><a href="#SpringMVC与Structs对比" class="headerlink" title="SpringMVC与Structs对比"></a>SpringMVC与Structs对比</h3><ul>
+<li>Struts2是类级别的拦截，SpringMVC是方法级别的拦截</li>
+<li>SpringMVC的方法之间基本上独立的，独享request response数据，方法之间不共享变量。而Struts2所有Action变量是共享的</li>
+<li>拦截器实现机制上，Struts2有以自己的interceptor机制，SpringMVC用的是独立的AOP方式</li>
+<li>SpringMVC的入口是servlet，而Struts2是filter</li>
+</ul>
+<h2 id="Hibernate"><a href="#Hibernate" class="headerlink" title="Hibernate"></a>Hibernate</h2><h3 id="Hibernate的优缺点"><a href="#Hibernate的优缺点" class="headerlink" title="Hibernate的优缺点"></a>Hibernate的优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>封装了JDBC,简化了很多重复性代码</li>
+<li>简化了DAO层编码工作</li>
+<li>移植性好,支持各种数据库</li>
+<li>没有实现任何接口,没有侵入性。所以说它是一个轻量级框架。<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4></li>
+<li>由于对持久层封装过于完整，导致无法对SQL进行优化，无法灵活使用JDBC的原生SQL。Hibernate封装了JDBC，所以没有JDBC直接访问数据库效率高。（<em>个人感觉原因在于Hibernate是对对象进行操作，然后利用反射原理将实体类中的字段按照annotation解析成一条或者多条sql语句，然后放入数据库执行。而JDBC是直接操作数据库</em>）</li>
+<li>使用ORM原则，导致配置过于复杂。表多的时候配置文件与内容很庞大。</li>
+<li>如果项目中各个表中关系复杂，表之间的关系很多，在很多地方把lazy都设置false，会导致数据查询和加载很慢，尤其是级联查询的时候。</li>
+<li>Hibernate在批量数据处理时有弱势，对于批量的修改，删除，不适合用Hibernate,这也是ORM框架的弱点</li>
+</ul>
+<h3 id="Hibernate-API"><a href="#Hibernate-API" class="headerlink" title="Hibernate API"></a>Hibernate API</h3><ul>
+<li>Configuration: 配置hibernate，启动hibernate,最后创建SessionFactory实例对象</li>
+<li>SessionFactory: 初始化hibernate，创建session接口对象。线程安全线程共享</li>
+<li>Session: 持久化管理器，负责数据的保存，更新，删除，加载和查询对象。表示应用程序与持久储存层之间交互操作的一个单线程对象。线程不安全[ThreadLocal]</li>
+<li>Transaction: 负责hibernate事务的管理</li>
+<li>Query, Criteria: 负责数据的查询</li>
+</ul>
+<h3 id="Hibernate工作原理"><a href="#Hibernate工作原理" class="headerlink" title="Hibernate工作原理"></a>Hibernate工作原理</h3><ul>
+<li>读取并解析配置文件</li>
+<li>读取并解析映射信息，创建SessionFactory</li>
+<li>使用SessionFactory的openSession()获得一个Sesssion对象</li>
+<li>创建事务Transation</li>
+<li>持久化操作（<strong>反射机制</strong>获得持久化对象的各个属性）</li>
+<li>成功了提交事务，否则rollback回滚事务</li>
+<li>关闭Session</li>
+<li>关闭SesstionFactory</li>
+</ul>
+<h3 id="Hibernate-Entity对象状态及其转换"><a href="#Hibernate-Entity对象状态及其转换" class="headerlink" title="Hibernate Entity对象状态及其转换"></a>Hibernate Entity对象状态及其转换</h3><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Hibernate.png" alt="Hibernate"></p>
+<ul>
+<li>临时态(Transient): 在数据库中不存在一条与它对应的记录[new(), delete()]</li>
+<li>持久状态 (Persistent): save(), get(), load()等</li>
+<li>游离态 (Detached): 游离对象在数据库中可能还存在一条与它对应的记录，只是现在这个游离对象脱离了Hibernate的缓存管理[close(), clean()]</li>
+</ul>
+<h3 id="Hibernate缓存"><a href="#Hibernate缓存" class="headerlink" title="Hibernate缓存"></a>Hibernate缓存</h3><ul>
+<li>Session缓存：事务缓存，一级缓存。减少数据库访问频率提高访问性能，保证缓存中的对象与数据库同步，位于缓存中的对象称为持久化对象</li>
+<li>SessionFactory缓存：应用缓存，二级缓存。存放元数据和预定义SQL，被session共享</li>
+</ul>
+<h3 id="session-get-与session-load"><a href="#session-get-与session-load" class="headerlink" title="session().get()与session().load()"></a>session().get()与session().load()</h3><ul>
+<li>session().get()：先在一级缓存中按实体类型与id查找，找到返回否则查询二级缓存。还是没找到查数据库，没有找到返回null</li>
+<li>session().load()：延迟加载，先查一级缓存，没有这个对象则创建代理。当使用这个对象时，如user.getName()或get(),才会触发sql语句去二级缓存和数据库查找。数据库没有抛出异常ObjectNotFoundException</li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring-Hibernate-Servlet-J2EE/" rel="tag"># Spring Hibernate Servlet J2EE</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/03/JAVA集合相关整理/" rel="next" title="JAVA集合相关整理">
+                <i class="fa fa-chevron-left"></i> JAVA集合相关整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/15/机器学习related(3) ———— 神经网络/" rel="prev" title="机器学习related(3) ———— 神经网络">
+                机器学习related(3) ———— 神经网络 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/03/12/Java Web/"
+           data-title="J2EE复习整理" data-url="http://oppalu.github.io/2018/03/12/Java Web/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Phoebe" />
+          <p class="site-author-name" itemprop="name">Phoebe</p>
+          <p class="site-description motion-element" itemprop="description">分享学习过程中的一些心得</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/oppalu" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1915317773" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/qing-jiao-wo-ou-ba-lu" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态码"><span class="nav-number">1.1.</span> <span class="nav-text">状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GET-amp-POST"><span class="nav-number">1.2.</span> <span class="nav-text">GET&POST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http请求的URL组成部分包括哪些元素？各表示什么内容？"><span class="nav-number">1.3.</span> <span class="nav-text">Http请求的URL组成部分包括哪些元素？各表示什么内容？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#J2EE"><span class="nav-number">2.</span> <span class="nav-text">J2EE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#J2EE组件"><span class="nav-number">2.1.</span> <span class="nav-text">J2EE组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个JavaWeb应用的请求处理流程"><span class="nav-number">2.2.</span> <span class="nav-text">一个JavaWeb应用的请求处理流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web容器"><span class="nav-number">2.3.</span> <span class="nav-text">Web容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat"><span class="nav-number">2.4.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组件"><span class="nav-number">2.4.1.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tomcat处理http请求的过程"><span class="nav-number">2.4.2.</span> <span class="nav-text">Tomcat处理http请求的过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EJB-Session-Bean三种状态"><span class="nav-number">2.5.</span> <span class="nav-text">EJB Session Bean三种状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet"><span class="nav-number">3.</span> <span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本定义"><span class="nav-number">3.1.</span> <span class="nav-text">基本定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发HttpServlet步骤"><span class="nav-number">3.2.</span> <span class="nav-text">开发HttpServlet步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet生命周期："><span class="nav-number">3.3.</span> <span class="nav-text">Servlet生命周期：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet体系结构"><span class="nav-number">3.4.</span> <span class="nav-text">Servlet体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet处理请求与响应的流程"><span class="nav-number">3.5.</span> <span class="nav-text">Servlet处理请求与响应的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4种作用域对象"><span class="nav-number">3.6.</span> <span class="nav-text">4种作用域对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet线程安全问题"><span class="nav-number">3.7.</span> <span class="nav-text">Servlet线程安全问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-session跟踪"><span class="nav-number">3.8.</span> <span class="nav-text">Servlet session跟踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie-amp-session"><span class="nav-number">3.9.</span> <span class="nav-text">cookie&session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转发（forward）和重定向（redirect）的区别？"><span class="nav-number">3.10.</span> <span class="nav-text">转发（forward）和重定向（redirect）的区别？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP"><span class="nav-number">4.</span> <span class="nav-text">JSP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是JSP？"><span class="nav-number">4.1.</span> <span class="nav-text">什么是JSP？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP与Servlet的区别与联系"><span class="nav-number">4.2.</span> <span class="nav-text">JSP与Servlet的区别与联系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JPA"><span class="nav-number">5.</span> <span class="nav-text">JPA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实体类四种状态"><span class="nav-number">5.1.</span> <span class="nav-text">实体类四种状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring"><span class="nav-number">6.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring是什么？为什么要用Spring？"><span class="nav-number">6.1.</span> <span class="nav-text">Spring是什么？为什么要用Spring？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ioc"><span class="nav-number">6.2.</span> <span class="nav-text">Ioc</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bean管理相关术语"><span class="nav-number">6.2.1.</span> <span class="nav-text">Bean管理相关术语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IoC容器"><span class="nav-number">6.2.2.</span> <span class="nav-text">IoC容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring的依赖注入方式"><span class="nav-number">6.2.3.</span> <span class="nav-text">Spring的依赖注入方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-bean的定义方式"><span class="nav-number">6.2.4.</span> <span class="nav-text">Spring bean的定义方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IOC容器的初始化-refresh"><span class="nav-number">6.2.5.</span> <span class="nav-text">IOC容器的初始化(refresh())</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IOC容器的依赖注入过程"><span class="nav-number">6.2.6.</span> <span class="nav-text">IOC容器的依赖注入过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bean的生命周期"><span class="nav-number">6.2.7.</span> <span class="nav-text">Bean的生命周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP"><span class="nav-number">6.3.</span> <span class="nav-text">AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本术语"><span class="nav-number">6.3.1.</span> <span class="nav-text">基本术语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">6.3.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">6.4.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring事务传播行为类型"><span class="nav-number">6.4.1.</span> <span class="nav-text">Spring事务传播行为类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring事务隔离级别"><span class="nav-number">6.4.2.</span> <span class="nav-text">Spring事务隔离级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring事务与数据库事务的关系？"><span class="nav-number">6.4.3.</span> <span class="nav-text">Spring事务与数据库事务的关系？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC"><span class="nav-number">7.</span> <span class="nav-text">SpringMVC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关键组件"><span class="nav-number">7.1.</span> <span class="nav-text">关键组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringMVC处理请求的流程"><span class="nav-number">7.2.</span> <span class="nav-text">SpringMVC处理请求的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringMVC与Structs对比"><span class="nav-number">7.3.</span> <span class="nav-text">SpringMVC与Structs对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate"><span class="nav-number">8.</span> <span class="nav-text">Hibernate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hibernate的优缺点"><span class="nav-number">8.1.</span> <span class="nav-text">Hibernate的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">8.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">8.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hibernate-API"><span class="nav-number">8.2.</span> <span class="nav-text">Hibernate API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hibernate工作原理"><span class="nav-number">8.3.</span> <span class="nav-text">Hibernate工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hibernate-Entity对象状态及其转换"><span class="nav-number">8.4.</span> <span class="nav-text">Hibernate Entity对象状态及其转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hibernate缓存"><span class="nav-number">8.5.</span> <span class="nav-text">Hibernate缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session-get-与session-load"><span class="nav-number">8.6.</span> <span class="nav-text">session().get()与session().load()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe Gao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"phoebegl"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
