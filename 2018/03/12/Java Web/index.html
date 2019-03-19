@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/jpa.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Hibernate.png">
-<meta property="og:updated_time" content="2019-03-15T15:03:43.701Z">
+<meta property="og:updated_time" content="2019-03-19T10:41:44.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2EE复习整理">
 <meta name="twitter:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg">
@@ -692,8 +692,11 @@
 <li>游离态 (Detached): 游离对象在数据库中可能还存在一条与它对应的记录，只是现在这个游离对象脱离了Hibernate的缓存管理[close(), clean()]</li>
 </ul>
 <h3 id="Hibernate缓存"><a href="#Hibernate缓存" class="headerlink" title="Hibernate缓存"></a>Hibernate缓存</h3><ul>
-<li>Session缓存：事务缓存，一级缓存。减少数据库访问频率提高访问性能，保证缓存中的对象与数据库同步，位于缓存中的对象称为持久化对象</li>
-<li>SessionFactory缓存：应用缓存，二级缓存。存放元数据和预定义SQL，被session共享</li>
+<li>Session缓存：事务缓存，一级缓存。减少数据库访问频率提高访问性能，保证缓存中的对象与数据库同步，位于缓存中的对象称为持久化对象【存在内存中】</li>
+<li>SessionFactory缓存：应用缓存，二级缓存。存放元数据和预定义SQL，被session共享。【内存和硬盘】<ul>
+<li>很少被修改的、不会被并发访问的、常量数据适合放在二级缓存中。</li>
+</ul>
+</li>
 </ul>
 <h3 id="session-get-与session-load"><a href="#session-get-与session-load" class="headerlink" title="session().get()与session().load()"></a>session().get()与session().load()</h3><ul>
 <li>session().get()：先在一级缓存中按实体类型与id查找，找到返回否则查询二级缓存。还是没找到查数据库，没有找到返回null</li>

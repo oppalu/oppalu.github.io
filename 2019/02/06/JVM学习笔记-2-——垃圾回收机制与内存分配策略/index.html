@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/81538cd5-1bcf-4e31-86e5-e198df1e013b.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/62e77997-6957-4b68-8d12-bfd609bb2c68.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/f99ee771-c56f-47fb-9148-c0036695b5fe.jpg">
-<meta property="og:updated_time" content="2019-03-13T08:08:20.628Z">
+<meta property="og:updated_time" content="2019-03-19T09:05:13.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM学习笔记(2)——垃圾回收机制与内存分配策略">
 <meta name="twitter:description" content="上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。由于在Java的运行数据区中，程序计数器、虚拟机栈、本地方法栈三个区域都是线程私有的，随线程而生，随线程而灭，在方法结束或线程结束时，内存自然就跟着回收了，不需要过多考虑回收的问题。而Java堆和方法区是共享的，这部分内存的分配和回收都是动态的，垃圾回收器关注的是这部分内">
@@ -449,7 +449,7 @@
 </ul>
 <h4 id="G1收集器-jdk1-7出现"><a href="#G1收集器-jdk1-7出现" class="headerlink" title="G1收集器(jdk1.7出现)"></a>G1收集器(jdk1.7出现)</h4><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/f99ee771-c56f-47fb-9148-c0036695b5fe.jpg" alt="此处输入图片的描述"><br>是一款面向服务端应用的垃圾收集器，在<strong>多 CPU 和大内存</strong>的场景下有很好的性能。可直接对新生代和老年代一起回收。</p>
 <ul>
-<li>G1引入 <strong>Region</strong> 的概念，将原来的一整块内存空间划分成多个的小空间，使得每个小空间可以单独进行垃圾回收</li>
+<li>G1引入 <strong>Region</strong> 的概念，将原来的一整块内存空间划分成多个的小空间，使得每个小空间可以单独进行垃圾回收。每块region都会被打唯一的分代标志</li>
 </ul>
 <p>特点：</p>
 <ul>
