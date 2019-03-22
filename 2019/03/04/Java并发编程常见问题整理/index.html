@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/5763525-0aa5b2223b707be1.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/776259-20160426201537486-1323529733.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/ThreadMap.png">
-<meta property="og:updated_time" content="2019-03-17T10:57:57.408Z">
+<meta property="og:updated_time" content="2019-03-22T06:47:41.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发编程常见问题整理">
 <meta name="twitter:description" content="最近准备面试的时候发现在典型的Java技术类面试中，多线程问题几乎是必考考点会经常被问到。Java内置了对于并发的支持，之前在开发中可能只是简单的用过类似synchronized关键字，但是并不完全了解Java的多线程设计，如其他的并发工具等。复习的时候参考了博客，《Java并发编程实战》以及《操作系统》，整理了一些常见的Java多线程编程的问题与知识点，方便日后自己的复习学习。可能有些地方见解">
@@ -480,8 +480,9 @@
 <li>ReentrantLock 可中断，而 synchronized 不行</li>
 </ul>
 <h4 id="synchronized与ReentrantLock对比"><a href="#synchronized与ReentrantLock对比" class="headerlink" title="synchronized与ReentrantLock对比"></a>synchronized与ReentrantLock对比</h4><ul>
+<li>都是可重入锁</li>
 <li>synchronized 是 JVM 实现的，而 ReentrantLock 是 JDK 实现的。</li>
-<li>公平锁是指多个线程在等待同一个锁时，必须按照申请锁的时间顺序来依次获得锁。synchronized 中的锁是非公平的，ReentrantLock 默认情况下也是非公平的，但是也可以是公平的。</li>
+<li>公平锁是指多个线程在等待同一个锁时，必须按照申请锁的时间顺序来依次获得锁。synchronized 中的锁是非公平的，ReentrantLock 默认情况下也是非公平的，但是也可以是公平的。【初始化的时候new ReentrantLock(true);】</li>
 <li>当持有锁的线程长期不释放锁的时候，正在等待的线程可以选择放弃等待，改为处理其他事情。ReentrantLock 可中断，而 synchronized 不行。</li>
 <li>一个 ReentrantLock 可以同时绑定多个 Condition 对象。</li>
 </ul>
@@ -536,9 +537,9 @@
 <li>管程锁定原则：一个 unlock 操作先行发生于后面对同一个锁的 lock 操作。</li>
 <li>volatile变量规则：对一个 volatile 变量的写操作先行发生于后面对这个变量的读操作。</li>
 <li>线程启动规则：Thread 对象的 start() 方法调用先行发生于此线程的每一个动作。</li>
-<li>线程加入规则：Thread 对象的结束先行发生于 join() 方法返回。</li>
+<li>线程结束规则：线程的任何操作都要在线程结束前执行。或者从 join() 方法返回。</li>
 <li>线程中断规则：对线程 interrupt() 方法的调用先行发生于被中断线程的代码检测到中断事件的发生，可以通过 interrupted() 方法检测到是否有中断发生。</li>
-<li>对象终结规则：一个对象的初始化完成（构造函数执行结束）先行发生于它的 finalize() 方法的开始。</li>
+<li>对象终结规则：一个对象执行构造函数要先行发生于它的 finalize() 方法的开始。</li>
 <li>传递性：如果操作 A 先行发生于操作 B，操作 B 先行发生于操作 C，那么操作 A 先行发生于操作 C。</li>
 </ul>
 <h2 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h2><h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><p>在许多应用中，共享数据的锁定状态只会持续很短的一段时间。自旋锁的思想是让一个线程在请求一个共享数据的锁时执行忙循环（自旋）一段时间，如果在这段时间内能获得锁，就可以避免进入阻塞状态。<br>但是它需要进行忙循环操作占用 CPU 时间，只适用于共享数据的锁定状态很短的场景。</p>
