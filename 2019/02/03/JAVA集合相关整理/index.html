@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/49d6de7b-0d0d-425c-9e49-a1559dc23b10.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/ConcurrentHashMap.jpg">
-<meta property="og:updated_time" content="2019-03-19T10:45:30.771Z">
+<meta property="og:updated_time" content="2019-03-22T04:57:47.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA集合相关整理">
 <meta name="twitter:description" content="概述下面两张图所示是JAVA的集合框架图，从整体上可以发现JAVA容器主要包括了Collection和Map两种。List， Queue和Set集合共同继承Collection这个父接口，Map集合是单独的一个接口。">
@@ -465,8 +465,16 @@
 <h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/ConcurrentHashMap.jpg" alt="ConcurrentHashMap"></p>
 <ul>
 <li>如图所示，ConcurrentHashMap本质上是一个Segment数组，而一个Segment实例又包含若干个桶，每个桶中都包含一条由若干个 HashEntry 对象链接起来的链表。多个线程可以同时访问不同分段锁上的桶，从而使其并发度更高。</li>
+<li>在读写某个Key时，先取该Key的哈希值。并将哈希值的高N位对Segment个数取模从而得到该Key应该属于哪个Segment，接着如同操作HashMap一样操作这个Segment。</li>
 <li>而HashTable 使用一把锁（锁住整个链表结构）处理并发问题，多个线程竞争一把锁，容易阻塞</li>
 <li>此外通过 HashEntry的不变性、Volatile变量的内存可见性和加锁重读机制保证高效、安全的读操作；</li>
+<li>Java8: <ul>
+<li>它对Node中的value和next属性设置了volatile同步锁</li>
+<li>TreeNode：当链表长度过长的时候，会转换为TreeNode。但是与HashMap不相同的是，它并不是直接转换为红黑树，而是把这些结点包装成TreeNode放在TreeBin对象中，由TreeBin完成对红黑树的包装</li>
+<li>CAS：这个算法的基本思想就是不断地去比较当前内存中的变量值与你指定的一个变量值是否相等，如果相等，则接受你指定的修改的值，否则拒绝你的操作。</li>
+<li>保证线程安全：在HashMap的每个Node上增加CAS + Synchronized来保证并发安全进行实现【如果CAS失败，说明有其它线程提前插入了节点，自旋重新尝试在这个位置插入节点。插入的过程用synchronized保证】</li>
+</ul>
+</li>
 </ul>
 <h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><ul>
 <li>继承自HashMap</li>
