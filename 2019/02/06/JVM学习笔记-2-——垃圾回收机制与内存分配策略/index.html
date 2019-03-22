@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/81538cd5-1bcf-4e31-86e5-e198df1e013b.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/62e77997-6957-4b68-8d12-bfd609bb2c68.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/f99ee771-c56f-47fb-9148-c0036695b5fe.jpg">
-<meta property="og:updated_time" content="2019-03-19T09:05:13.850Z">
+<meta property="og:updated_time" content="2019-03-22T05:10:25.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM学习笔记(2)——垃圾回收机制与内存分配策略">
 <meta name="twitter:description" content="上一篇博客主要介绍了Java的内存区域模型。这篇主要根据书中第3章内容和一些博客介绍一下Java的垃圾回收机制和内存分配策略。由于在Java的运行数据区中，程序计数器、虚拟机栈、本地方法栈三个区域都是线程私有的，随线程而生，随线程而灭，在方法结束或线程结束时，内存自然就跟着回收了，不需要过多考虑回收的问题。而Java堆和方法区是共享的，这部分内存的分配和回收都是动态的，垃圾回收器关注的是这部分内">
@@ -436,9 +436,9 @@
 <h4 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h4><p>是 Parallel Scavenge 收集器的老年代版本。<br>在注重吞吐量以及 CPU 资源敏感的场合，可以优先考虑 Parallel Scavenge 加 Parallel Old 收集器。</p>
 <h4 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h4><p><img src="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/62e77997-6957-4b68-8d12-bfd609bb2c68.jpg" alt="此处输入图片的描述"><br>与用户线程<strong>并发执行</strong><br>CMS（Concurrent Mark Sweep）是一种使用<strong>标记-清除</strong>算法，以<strong>获取最短回收停顿时间为目标</strong>的收集器。适合用于互联网等<strong>重视服务的响应速度</strong>，希望系统停顿时间最短的情况。<br>整个过程分为4个步骤：</p>
 <ol>
-<li><strong>初始标记</strong>：仅仅是标记一下 GC Roots 能直接关联到的对象，速度很快，需要STW</li>
-<li><strong>并发标记</strong>：进行 GC Roots Tracing 的过程，它在整个回收过程中耗时最长，不需要STW</li>
-<li><strong>重新标记</strong>：为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录，需要STW</li>
+<li><strong>初始标记</strong>：仅仅是标记一下 GC Roots 能<strong>直接</strong>关联到的对象，速度很快，需要STW</li>
+<li><strong>并发标记</strong>：进行 GC Roots Tracing 的过程，它在整个回收过程中耗时最长，不需要STW。递归标记找所有GC可达的。</li>
+<li><strong>重新标记</strong>：为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录，需要STW【可能有的存活了】</li>
 <li><strong>并发清除</strong>：回收内存空间，时间很长,不需要STW</li>
 </ol>
 <p>缺点：</p>
