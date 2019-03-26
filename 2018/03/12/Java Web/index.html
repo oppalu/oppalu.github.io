@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/jpa.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Hibernate.png">
-<meta property="og:updated_time" content="2019-03-20T06:22:12.196Z">
+<meta property="og:updated_time" content="2019-03-22T07:00:21.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2EE复习整理">
 <meta name="twitter:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/Tomcat.jpg">
@@ -563,7 +563,7 @@
 <h4 id="IOC容器的初始化-refresh"><a href="#IOC容器的初始化-refresh" class="headerlink" title="IOC容器的初始化(refresh())"></a>IOC容器的初始化(refresh())</h4><ul>
 <li>Resource定位：即对资源文件的定位。由ResourceLoader通过统一的Resource接口完成。</li>
 <li>载入：通过BeanDefinitionReader来完成Bean定义信息的解析，把用户定义好的Bean表示成IOC容器的内部数据结构，即BeanDefinition</li>
-<li>注册：由BeanDefinitionRegistry实现的registerBeanDefiition方法进行。将BeanDefinition注入到HashMap中，IOC容器就是通过这个HashMap来管理数据。</li>
+<li>注册：由BeanDefinitionRegistry实现的registerBeanDefinition方法进行。将BeanDefinition注入到HashMap中，IOC容器就是通过这个HashMap来管理数据。</li>
 </ul>
 <h4 id="IOC容器的依赖注入过程"><a href="#IOC容器的依赖注入过程" class="headerlink" title="IOC容器的依赖注入过程"></a>IOC容器的依赖注入过程</h4><p>依赖注入的过程是用户第一次向IoC容器索要Bean时触发的，lazy-init属性默认情况下设置的是初始化时就注入。调用getBean()也会注入</p>
 <ul>

@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/full.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/49d6de7b-0d0d-425c-9e49-a1559dc23b10.png">
 <meta property="og:image" content="https://coding.net/u/phoebegl74/p/git_resource/git/raw/master/blog/ConcurrentHashMap.jpg">
-<meta property="og:updated_time" content="2019-03-22T04:57:47.722Z">
+<meta property="og:updated_time" content="2019-03-25T11:26:48.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA集合相关整理">
 <meta name="twitter:description" content="概述下面两张图所示是JAVA的集合框架图，从整体上可以发现JAVA容器主要包括了Collection和Map两种。List， Queue和Set集合共同继承Collection这个父接口，Map集合是单独的一个接口。">
@@ -447,7 +447,7 @@
 <h4 id="扩容resize"><a href="#扩容resize" class="headerlink" title="扩容resize()"></a>扩容resize()</h4><ul>
 <li>设 HashMap 的 table 长度为 M，需要存储的键值对数量为 N</li>
 <li>参数：<ul>
-<li>capacity: table的默认大小(16)，必须为2^n</li>
+<li>capacity: table的默认大小(16)，必须为2^n【<strong>可以⽤用位运算来加快计算速度</strong>】</li>
 <li>size: 键值对数量</li>
 <li>threshold: size的临界值，size &gt;= threshold的时候就要进行扩容</li>
 <li>loadFactor: 装载因子，即table能够使用的比例(默认0.75)，threshold = capacity*loadFactor</li>
